@@ -1,0 +1,29 @@
+"0","install.packages(""xaringan"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","probando la URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/xaringan_0.16.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 128281 bytes (125 KB)
+"
+"2","downloaded 125 KB
+
+"
+"1","package ‘xaringan’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Temp\RtmpsrQX88\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(xaringan)"
+"0","library(tidyverse)"
+"0","library(datos)"
+"0","library(nycflights13)"
+"0","library(here)"
+"0","#install.packages(""nycflights13"")"

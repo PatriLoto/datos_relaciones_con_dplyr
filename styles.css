@@ -1,0 +1,110 @@
+
+@import url("//fonts.googleapis.com/css?family=Lato");
+* {
+  font-family: 'Lato'!important;
+  color: #555555;
+}
+body{
+  font-family: 'Lato';
+  font-size: 14pt; 
+}
+/* Headers */
+h1{
+  font-size: 18pt;
+  color: #555555;
+}
+
+/* Headers */
+h2,h3,h4,h5,h6{
+  font-size: 16pt;
+  color: #555555;
+}
+/*Colour hyperlinks*/
+a {
+  color: #41b6a6; 
+}
+
+.highlightme { background-color:#41b6a6; }
+
+a:hover {
+  color: #9ccfb1;
+}
+
+a:active {
+  color: #9ccfb1;
+}
+
+/*Header*/
+h2 {
+  font-family: 'Lato' 
+  color: black !important;
+  line-height: 1.1;
+}
+
+/* Search Box*/
+input[type=search]:focus {
+    border-color: #9ccfb1;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px #9ccfb1;,0 0 8px #9ccfb1;;
+    box-shadow: inset 0 1px 1px #9ccfb1;,0 0 8px #9ccfb1;;
+}
+
+/*Select box*/
+select:focus {
+    border-color: #9ccfb1;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px #9ccfb1;,0 0 8px #9ccfb1;;
+    box-shadow: inset 0 1px 1px  #9ccfb1;,0 0 8px #9ccfb1;;
+}
+
+/*Select options - currently not working*/
+option:hover {
+  background-color: #9ccfb1;!important
+}
+
+/*Hover table row*/
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #9ccfb1;!important;
+}
+
+
+/* -----------cambió los colores del cuadro del código, sino no me gusta, lo comento------------- */
+
+
+pre {
+    font-family: cutive mono,monospace;
+    font-size: 14pt;
+    display: block;
+    white-space: pre;
+    margin: 1em 0px;
+    color: #1f5386;             /*--azul--*/
+    background-color: #bed3ec; /*--celeste--*/
+    border: solid 5px #dfedff;--celeste claro--
+     }
+
+code {
+    font-family: cutive mono,monospace;
+    font-size: 87.5%;   
+color: #e83e8c;
+    word-wrap: break-word;
+}
+
+
+/* -----------div tips para hacer los marcos de colores------------- */
+div.demo {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    font-family: 'Lato';
+    font-size: 14pt;
+  }
+
+div.demo {
+  background-image: url("Live-code.png");
+}

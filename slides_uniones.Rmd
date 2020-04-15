@@ -1,0 +1,62 @@
+---
+title: "Datos Relacionales"
+author: "Patricia A. Loto - Lic. en Sistemas de Información"
+date: "14/04/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## ¿Qué vamos a aprender?
+
+- Relaciones
+- Claves
+- Uniones de transformación
+- Uniones de filtrado
+- Operaciones con conjuntos
+
+## Relaciones
+
+Una clave primaria y su correspondiente clave foránea en otra tabla forman una **relación**
+
+- de a uno a uno
+- de uno a muchos 
+- de muchos a muchos ??
+
+
+```{r librerias, include=FALSE}
+library(tidyverse)
+library(datos)
+library(nycflights13)
+library(here)
+```
+
+## Dataset
+Usaremos datos sobre vuelos desde y hacia Nueva York para aprender sobre datos relacionales^[NdT. El texto original se refiere al paquete nycflights13 cuya traducción se incluye en el paquete **datos**.]. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos` que se usó en el capítulo sobre [transformación de datos].
+
+
+## Tabla aerolineas
+```{r pressure}
+aerolineas
+
+```
+
+## Tabla aeropuertos
+```{r}
+aeropuertos
+```
+
+## Tabla aviones
+
+```{r}
+aviones
+```
+
+
+## Tabla clima
+```{r}
+clima
+```
+
