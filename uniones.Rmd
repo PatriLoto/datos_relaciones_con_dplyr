@@ -26,8 +26,8 @@ options(servr.daemon = TRUE)
 
 # ¿Qué vamos a aprender?
 
-1. Relaciones
-1. Claves
+1. Tipos de claves: primaria, foránea y subrogada
+1. ¿Qué es una relación? 
 1. Uniones de transformación
 1. Uniones de filtrado
 1. Operaciones con conjuntos
@@ -41,7 +41,9 @@ background-size:cover
 
 ---
 
-
+class: inverse, center, middle
+Motivación: en la vida real necesitaremos trabajar con más de una tabla, por lo que será de suma utilidd aprender a unir dos o más set de datos, para esto existe un conjuntos de verbos que facilitan las **uniones** o  **JOIN**
+---
 # Dataset
 
 Usaremos datos sobre vuelos desde y hacia Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
@@ -157,4 +159,7 @@ band_members %>% anti_join(band_instruments)
 ```
 
 
+---
+Fuente:
+.footnote[[*] It is different with Pandoc's Markdown! It is limited but should be enough for presentation purposes. Come on... You do not need a slide for the Table of Contents! Well, the Markdown support in remark.js [may be improved](https://github.com/gnab/remark/issues/142) in the future.]
 ---
