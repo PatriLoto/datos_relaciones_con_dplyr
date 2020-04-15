@@ -1,0 +1,160 @@
+---
+title: "Datos Relacionales"
+subtitle: "with dplyr"
+author: "Patricia Loto"
+date: "2020/13/04"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    nature:
+      autoplay: 30000
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(servr.daemon = TRUE)
+
+
+```
+
+
+---
+
+# ¿Qué vamos a aprender?
+
+1. Relaciones
+1. Claves
+1. Uniones de transformación
+1. Uniones de filtrado
+1. Operaciones con conjuntos
+
+---
+class: inverse, center, middle
+background-image: url("largada.jpg")
+background-size:cover
+# Empecemos
+
+
+---
+
+
+# Dataset
+
+Usaremos datos sobre vuelos desde y hacia Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
+
+```{r include=FALSE, tidy=FALSE}
+library(tidyverse)
+library(datos)
+library(nycflights13)
+library(here)
+library(dplyr)
+library(DT)
+```
+
+
+---
+# aeropuertos
+
+
+```{r aeropuerto}
+#knitr::kable(head(aeropuertos), format = 'html')
+aeropuertos 
+```
+
+
+
+---
+# aerolineas
+
+
+```{r}
+head(aerolineas) %>% 
+  datatable()
+```
+---
+class: inverse, center, middle
+
+<img src="dplyr.png" width="20%" align="top" />
+
+#Joins
+
+---
+<img src="dplyr.png" width="10%" align="right" />
+
+#Joins
+
+- Cuando trabajamos con más de un dataset y necesitamos crear una base de datos a partir de dos o más set de datos, necesitamos realizar una operación llamada **JOIN**
+- Existen distintos tipos de **JOIN** según que dataset querramos generar, y, también de acuerdo a si se crean columnas nuevas (**mutating joins**) o solo filtramos filas (**filtering joins**)
+
+### Mutating Joins
+
+<img src="joins1.png" width="130%" align="middle" />
+
+.footnote[[*]
+Mas información en https://dplyr.tidyverse.org/reference/join.html]
+
+---
+<img src="dplyr.png" width="10%" align="right" />
+
+### Filtering Joins
+
+<img src="join2.png" width="160%" align="middle" />
+
+```{r message=FALSE, warning=FALSE}
+dplyr::band_members
+```
+
+```{r message=FALSE, warning=FALSE}
+dplyr::band_instruments
+```
+
+
+---
+
+
+## Mutating Joins
+
+### Left Join
+
+```{r message=FALSE, warning=FALSE}
+band_members %>% left_join(band_instruments)
+```
+
+### Right Join
+```{r message=FALSE, warning=FALSE}
+band_members %>% right_join(band_instruments)
+```
+---
+<img src="dplyr.png" width="10%" align="right" />
+
+### Full Join
+```{r message=FALSE, warning=FALSE}
+band_members %>% full_join(band_instruments)
+```
+
+### Inner Join
+```{r message=FALSE, warning=FALSE}
+band_members %>% full_join(band_instruments)
+```
+
+---
+<img src="dplyr.png" width="10%" align="right" />
+
+## Filtering Joins
+
+### Semi Join
+```{r message=FALSE, warning=FALSE}
+band_members %>% semi_join(band_instruments)
+```
+
+### Anti Join 
+```{r message=FALSE, warning=FALSE}
+band_members %>% anti_join(band_instruments)
+```
+
+
+---
