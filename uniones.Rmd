@@ -5,21 +5,22 @@ author: "Patricia Loto"
 date: "2020/13/04"
 output:
   xaringan::moon_reader:
-    css: [default, metropolis, metropolis-fonts]
+    css: [default, ki , metropolis-fonts]
     nature:
-      autoplay: 30000
-      highlightStyle: github
+      autoplay: 30000  
+      highlightStyle: atelier-lakeside-light
       highlightLines: true
       countIncrementalSlides: false
       
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.width = 10.5, fig.height = 4, 
+                      comment = NA, rows.print = 16)
 options(htmltools.dir.version = FALSE)
 options(servr.daemon = TRUE)
-
-
+xaringan:::list_css()
 ```
 
 # ¿Qué vamos a aprender?
@@ -29,13 +30,12 @@ options(servr.daemon = TRUE)
 1. Uniones de transformación
 1. Uniones de filtrado
 1. Operaciones con conjuntos
-
 ---
+
 class: inverse, center, top
 background-image: url("largada.jpg")
 background-size:cover
 # ¡Empecemos!
-
 
 ---
 class: inverse, center, middle
@@ -65,7 +65,7 @@ background-image: url("aeropuertos.jpg")
 background-size:cover
 # Aeropuertos
 
-### Contiene información de cada aeropuerto, identificado por su `código`.
+### Contiene información de cada aeropuerto, identificado por su código.
 
 ---
 # aeropuertos
@@ -76,11 +76,10 @@ knitr::kable(head(aeropuertos), format = 'html')
 ```
 
 ---
-
 class: inverse, center, bottom
 background-image: url("aerolineas.jpg")
 background-size:cover
-# Aerolineas
+# Aerolíneas
 
 ### Permite observar el nombre completo de la aerolínea a partir de su código abreviado.
 
@@ -90,17 +89,16 @@ background-size:cover
 ```{r aerolineas, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::kable(head(aerolineas), format = 'html')
 ```
----
 
+---
 class: inverse, center, top
 background-image: url("aviones.jpg")
 background-size:cover
 # Aviones
 
-### Entrega información de cada avión, identificado por su `codigo_cola`.
+### Entrega información de cada avión, identificado por su codigo_cola.
 
 ---
-
 # aviones
 
 ```{r aviones, echo=FALSE, message=FALSE, warning=FALSE}
@@ -108,32 +106,33 @@ knitr::kable(head(aviones), format = 'html')
 ```
 
 ---
-
 class: inverse, center, top
 background-image: url("clima.jpg")
 background-size:cover
 # Clima
 
 ### Entrega información del clima en cada aeropuerto de Nueva York para cada hora.
----
 
+---
 # clima
 
 ```{r clima, echo=FALSE}
 knitr::kable(head(clima), format = 'html')
 ```
+
 ---
 # Relaciones
 
---> Recordemos que, se le llaman **datos relacionales** a múltiples tablas de datos, ya que no solo importan los conjuntos de datos individuales, sino que también sus relaciones son importantes.
-
-Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras relaciones se construyen sobre esta idea simple: las relaciones entre tres o más tablas son siempre una propiedad de las relaciones entre cada par. 
+* Recordemos que, se le llaman **datos relacionales** a múltiples tablas de datos, ya que no solo importan los conjuntos de datos individuales, sino que también sus relaciones son importantes.
 
 
-Diagrama de relaciones entre las diferentes tablas del dataset **vuelos**:
-<img src="relational-nycflights.svg" width="70%" align="middle" />
+--
+* Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras relaciones se construyen sobre esta idea simple: las relaciones entre tres o más tablas son siempre una propiedad de las relaciones entre cada par. 
 
+--
+* Diagrama de relaciones entre las diferentes tablas del dataset **vuelos**:
 
+<img src="relational-nycflights.svg" width="50%" align="center" />
 
 ---
 # Claves
@@ -153,61 +152,98 @@ Existen diferentes tipos de claves:
 * **Clave subrogada**
   
 ---
-
-
 class: inverse, center, middle
-background-image: url("soga2.jpg")
+background-image: url("soga1.jpg")
 background-size:cover
 # JOINS
 
 ---
-
 #Joins
-
-- Existen distintos tipos de **JOIN** según que dataset querramos generar, y, también de acuerdo a si se crean columnas nuevas (**mutating joins**) o solo filtramos filas (**filtering joins**)
 
 
 Para trabajar con datos relacionales necesitas verbos que funcionen con pares de tablas. Existen tres familias de verbos diseñadas para trabajar con datos relacionales:
 
-* **__Uniones de transformación__** (del inglés _mutating joins_), que agregan nuevas variables a un *data frame* a partir de las observaciones coincidentes en otra tabla.
+1. **__Uniones de transformación__** (del inglés **_mutating joins_**), que agregan nuevas variables a un *data frame* a partir de las observaciones coincidentes en otra tabla.
 
-* **__Uniones de filtro__** (del inglés _filtering joins_), que filtran observaciones en un *data frame* con base en si coinciden o no con una observación de otra tabla.
+1. **__Uniones de filtro__** (del inglés **_filtering joins_**), que filtran observaciones en un *data frame* con base en si coinciden o no con una observación de otra tabla.
 
-* **__Operaciones de conjuntos__** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto.
+1. **__Operaciones de conjuntos__** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto.
 
 
 ---
-# Uniones de transformación o Mutating Joins
+# Uniones de transformación 
+La primera herramienta que miraremos para combinar pares de variables es la __unión de transformación__ (**_mutating join_**). Una unión de transformación te permite combinar variables a partir de dos tablas. 
+
+--
+1. Primero busca coincidencias de observaciones de acuerdo a sus claves,
+
+--
+1. Luego copia las variables de una tabla en la otra.
 
 
-La primera herramienta que miraremos para combinar pares de variables es la __unión de transformación__ (_mutating join_). Una unión de transformación te permite combinar variables a partir de dos tablas. Primero busca coincidencias de observaciones de acuerdo a sus claves y luego copia las variables de una tabla en la otra.
-
-<img src="joins1.png" width="130%" align="middle" />
 
 .footnote[[*]
 Mas información en https://dplyr.tidyverse.org/reference/join.html]
 
 ---
 # Uniones de transformación
-```{r vuelos2, include=FALSE}
+
+Las funciones de unión, Tal como `mutate()`, agregan variables hacia la derecha, por lo que si tienes muchas variables inicialmente, las nuevas variables no se imprimirán.
+
+Para lo tanto, crearemos un conjunto de datos más angosto para que sea más fácil ver qué es lo que está ocurriendo: 
+```{r vuelos2, echo=TRUE}
 vuelos2 <- vuelos %>%
   select(anio:dia, hora, origen, destino, codigo_cola, aerolinea)
 vuelos2
 ```
 ---
-# Left Join o unión por izquierda
+#  Unión por izquierda ó Left Join 
 Imagina que quieres incluir el nombre completo de la aerolínea en `vuelos2`. Puedes combinar los datos de `aerolinas` y `vuelos2` con `left_join()` (*union_izquierda*):
 
-```{r union_vuelos_aerolinea}
+```{r vuelos_aerolinea, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 vuelos2 %>%
   select(-origen, -destino) %>%
-  left_join(aerolineas, by = "aerolinea")
+  left_join(aerolineas, by = "aerolinea") #<<
 ```
 
+---
+#  Unión por izquierda ó Left Join 
+
 El resultado de unir `aerolineas` y `vuelos2` es la inclusión de una variable adicional: `nombre`. Esta es la razón de que llamemos unión de transformación a este tipo de unión.
+
+```{r union_vuelos_aerolinea, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+vuelos2 %>%
+  select(-origen, -destino) %>%
+  left_join(aerolineas, by = "aerolinea") #<<
+```
+
+
+---
+#  Unión por derecha ó Right Join 
+
+---
+# Entendiendo las uniones
+
+```{r echo=FALSE}
+knitr::include_graphics("join-outer.svg")
+```
+
+Para ayudarte a entender las uniones, usaremos una representación gráfica:
+
+<!-- <img src="join-outer.png" width="10%" align="right" /> -->
+
 ---
 
-<img src="dplyr.png" width="10%" align="right" />
+# Representando uniones con diagrama de Venn:
+Otra forma de ilustrar diferentes tipos de uniones es mediante un diagrama de Venn:
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("join-venn.svg")
+```
+
+ * Puede ayudar a recordar qué uniones preservan las observaciones en qué tabla pero esto tiene una limitante importante: un diagrama de Venn no puede mostrar qué ocurre con las claves que no identifican de manera única una observación.
+ 
+---
 
 ### Filtering Joins
 
@@ -266,5 +302,5 @@ band_members %>% anti_join(band_instruments)
 
 ---
 Fuente:
-.footnote[[*]El libro R4DS y las slides de Robust tools de DjNavarro [may be improved](https://github.com/gnab/remark/issues/142) in the future.]
+.footnote[[*]El libro [R4DS]() y las slides de [Robust tools] de DjNavarro (https://github.com/gnab/remark/issues/142) in the future.]
 ---
