@@ -60,7 +60,7 @@ library(DT)
 ```
 
 ---
-class: inverse, center, middle
+class: inverse, center, top
 background-image: url("aeropuertos.jpg")
 background-size:cover
 # Aeropuertos
@@ -77,7 +77,7 @@ knitr::kable(head(aeropuertos), format = 'html')
 
 ---
 
-class: inverse, center, middle
+class: inverse, center, bottom
 background-image: url("aerolineas.jpg")
 background-size:cover
 # Aerolineas
@@ -131,7 +131,7 @@ Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras re
 
 
 Diagrama de relaciones entre las diferentes tablas del dataset **vuelos**:
-<img src="relational-nycflights.svg" width="60%" align="middle" />
+<img src="relational-nycflights.svg" width="70%" align="middle" />
 
 
 
@@ -158,7 +158,7 @@ Existen diferentes tipos de claves:
 class: inverse, center, middle
 background-image: url("soga2.jpg")
 background-size:cover
-# Joins
+# JOINS
 
 ---
 
