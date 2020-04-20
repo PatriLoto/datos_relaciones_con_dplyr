@@ -15,14 +15,12 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = FALSE)
 options(htmltools.dir.version = FALSE)
 options(servr.daemon = TRUE)
 
 
 ```
-
-
----
 
 # ¿Qué vamos a aprender?
 
@@ -40,15 +38,21 @@ background-size:cover
 
 
 ---
-
 class: inverse, center, middle
-Motivación: en la vida real necesitaremos trabajar con más de una tabla, por lo que será de suma utilidd aprender a unir dos o más set de datos, para esto existe un conjuntos de verbos que facilitan las **uniones** o  **JOIN**
+Motivación: en la vida real es raro que un análisis de datos involucre una única tabla de datos, por el contrario necesitaremos trabajar con más de un dataset, por lo que será de suma utilidad aprender a unir dos o más tablas. Para esto, aprenderemos los conjuntos de verbos que facilitan las **uniones** o  **JOIN**.
+
+Recordemos que, se le llaman _datos relacionales_ a esas múltiples tablas de datos, ya que sus relaciones, y no solo los conjuntos de datos individuales, son importantes.
+
 ---
+class: inverse, center, top
+color-text:black
+background-image: url("vuelos.jpg")
+background-size:cover
 # Dataset
 
-Usaremos datos sobre vuelos desde y hacia Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
+Usaremos los datos sobre vuelos desde y hacia la ciudad de Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
 
-```{r include=FALSE, tidy=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE, tidy=FALSE}
 library(tidyverse)
 library(datos)
 library(nycflights13)
@@ -57,42 +61,118 @@ library(dplyr)
 library(DT)
 ```
 
+---
+class: inverse, center, top
+background-image: url("aeropuertos.jpg")
+background-size:cover
+* `aeropuertos` entrega información de cada aeropuerto, identificado por su `código`:
 
 ---
 # aeropuertos
 
-
 ```{r aeropuerto}
-#knitr::kable(head(aeropuertos), format = 'html')
-aeropuertos 
+knitr::kable(head(aeropuertos), format = 'html')
+
 ```
 
-
+---
+class: inverse, center, top
+background-image: url("aerolineas.jpg")
+background-size:cover
+* `aerolineas` permite observar el nombre completo de la aerolínea a partir de su código abreviado.
 
 ---
 # aerolineas
-
-
-```{r}
-head(aerolineas) %>% 
-  datatable()
+```{r aerolineas}
+knitr::kable(head(aerolineas), format = 'html')
 ```
 ---
+class: inverse, center, top
+background-image: url("aviones.jpg")
+background-size:cover
+* `aviones` entrega información de cada avión, identificado por su `codigo_cola`.
+
+---
+
+# aviones
+
+```{r aviones }
+knitr::kable(head(aviones), format = 'html')
+```
+
+---
+class: inverse, center, top
+background-image: url("clima.jpg")
+background-size:cover
+`clima` entrega información del clima en cada aeropuerto de Nueva York para cada hora:
+---
+
+# clima
+
+```{r clima}
+knitr::kable(head(clima), format = 'html')
+```
+---
+# Relaciones
+Las relaciones siempre se definen sobre un par de tablas. Todas las otras relaciones se construyen sobre esta idea simple: las relaciones entre tres o más tablas son siempre una propiedad de las relaciones entre cada par. ¡A veces ambos elementos de un par pueden ser la misma tabla! Esto se necesita si, por ejemplo, tienes una tabla de personas y cada persona tiene una referencia a sus padres.
+
+
+Una forma de mostrar las relaciones entre las diferentes tablas es mediante un diagrama:
+
+```{r, echo = FALSE}
+knitr::include_graphics("relational-nycflights.svg")
+```
+
+Este diagrama es un poco abrumador, ¡pero es simple comparado con algunos que verás en el exterior! La clave para entender estos diagramas es recordar que cada relación siempre involucra un par de tablas. No necesitas entender todo el diagrama, necesitas entender la cadena de relaciones entre las tablas que te interesan.
+
+
+---
+# Claves
+
+Las variables usadas para conectar cada par de variables se llaman _claves_ (del inglés _key_). Una clave es una variable (o un conjunto de variables) que identifican de manera única una observación. En casos simples, una sola variable es suficiente para identificar una observación. Por ejemplo, cada avión está identificado de forma única por su `codigo_cola`. En otros casos, se pueden necesitar múltiples variables. Por ejemplo, para identificar una observación en `clima` se necesitan cinco variables:  `anio`, `mes`, `dia`, `hora` y `origen`.
+
+Existen dos tipos de claves:
+
+* Una _clave primaria_ identifica únicamente una observación en su propia tabla.
+  Por ejemplo, `aviones$codigo_cola` es una clave primaria, ya que identifica de
+  manera única cada avión en la tabla `aviones`.
+
+* Una _clave foránea_ únicamente identifica una observación en otra tabla.
+  Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la
+  tabla `vuelos`, en la que une cada vuelo con un único avión.
+  
+  
+  
+---
+
+
 class: inverse, center, middle
-
-<img src="dplyr.png" width="20%" align="top" />
-
+background-image: url("soga3.jpg")
+background-size:cover
 #Joins
 
 ---
-<img src="dplyr.png" width="10%" align="right" />
 
 #Joins
 
-- Cuando trabajamos con más de un dataset y necesitamos crear una base de datos a partir de dos o más set de datos, necesitamos realizar una operación llamada **JOIN**
 - Existen distintos tipos de **JOIN** según que dataset querramos generar, y, también de acuerdo a si se crean columnas nuevas (**mutating joins**) o solo filtramos filas (**filtering joins**)
 
-### Mutating Joins
+
+Para trabajar con datos relacionales necesitas verbos que funcionen con pares de tablas. Existen tres familias de verbos diseñadas para trabajar con datos relacionales:
+
+* __Uniones de transformación__ (del inglés _mutating joins_), que agregan nuevas variables a un *data frame* a partir de las observaciones coincidentes en otra tabla.
+
+* __Uniones de filtro__ (del inglés _filtering joins_), que filtran observaciones en un *data frame* con base en si coinciden o no con una observación de otra tabla.
+
+* __Operaciones de conjuntos__ (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto.
+
+
+---
+# Uniones de transformación {#mutating-joins} 
+##Mutating Joins
+
+
+La primera herramienta que miraremos para combinar pares de variables es la __unión de transformación__ (_mutating join_). Una unión de transformación te permite combinar variables a partir de dos tablas. Primero busca coincidencias de observaciones de acuerdo a sus claves y luego copia las variables de una tabla en la otra.
 
 <img src="joins1.png" width="130%" align="middle" />
 
@@ -116,8 +196,6 @@ dplyr::band_instruments
 
 
 ---
-
-
 ## Mutating Joins
 
 ### Left Join
@@ -161,5 +239,5 @@ band_members %>% anti_join(band_instruments)
 
 ---
 Fuente:
-.footnote[[*] It is different with Pandoc's Markdown! It is limited but should be enough for presentation purposes. Come on... You do not need a slide for the Table of Contents! Well, the Markdown support in remark.js [may be improved](https://github.com/gnab/remark/issues/142) in the future.]
+.footnote[[*]El libro R4DS y las slides de Robust tools de DjNavarro [may be improved](https://github.com/gnab/remark/issues/142) in the future.]
 ---

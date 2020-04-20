@@ -3146,7 +3146,7 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>Dataset</h2></hgroup><article  id="dataset">
 
-<p>Usaremos datos sobre vuelos desde y hacia Nueva York para aprender sobre datos relacionales<a id="fnref1" href="#fn1"><sup>1</sup></a>. El paquete <strong>datos</strong> contiene cuatro tablas que se relacionan con la tabla <code>vuelos</code> que se usó en el capítulo sobre [transformación de datos].</p>
+<p>Usaremos datos sobre vuelos desde y hacia Nueva York, incluidos en el paquete <strong>datos</strong>, para aprender sobre datos relacionales. El paquete <strong>datos</strong> contiene cuatro tablas que se relacionan con la tabla <code>vuelos</code>.</p>
 
 </article></slide><slide class=""><hgroup><h2>Tabla aerolineas</h2></hgroup><article  id="tabla-aerolineas">
 
@@ -3172,56 +3172,1481 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>Tabla aeropuertos</h2></hgroup><article  id="tabla-aeropuertos">
 
-<pre >## # A tibble: 1,458 x 8
-##    codigo_aeropuer~ nombre latitud longitud altura zona_horaria horario_verano
-##    &lt;chr&gt;            &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         
-##  1 04G              Lansd~    41.1    -80.6   1044           -5 A             
-##  2 06A              Moton~    32.5    -85.7    264           -6 A             
-##  3 06C              Schau~    42.0    -88.1    801           -6 A             
-##  4 06N              Randa~    41.4    -74.4    523           -5 A             
-##  5 09J              Jekyl~    31.1    -81.4     11           -5 A             
-##  6 0A9              Eliza~    36.4    -82.2   1593           -5 A             
-##  7 0G6              Willi~    41.5    -84.5    730           -5 A             
-##  8 0G7              Finge~    42.9    -76.8    492           -5 A             
-##  9 0P2              Shoes~    39.8    -76.6   1000           -5 U             
-## 10 0S9              Jeffe~    48.1   -123.     108           -8 A             
-## # ... with 1,448 more rows, and 1 more variable: zona_horaria_iana &lt;chr&gt;</pre>
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+codigo_aeropuerto
+
+</th>
+
+<th style="text-align:left;">
+
+nombre
+
+</th>
+
+<th style="text-align:right;">
+
+latitud
+
+</th>
+
+<th style="text-align:right;">
+
+longitud
+
+</th>
+
+<th style="text-align:right;">
+
+altura
+
+</th>
+
+<th style="text-align:right;">
+
+zona_horaria
+
+</th>
+
+<th style="text-align:left;">
+
+horario_verano
+
+</th>
+
+<th style="text-align:left;">
+
+zona_horaria_iana
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+04G
+
+</td>
+
+<td style="text-align:left;">
+
+Lansdowne Airport
+
+</td>
+
+<td style="text-align:right;">
+
+41.13047
+
+</td>
+
+<td style="text-align:right;">
+
+-80.61958
+
+</td>
+
+<td style="text-align:right;">
+
+1044
+
+</td>
+
+<td style="text-align:right;">
+
+-5
+
+</td>
+
+<td style="text-align:left;">
+
+A
+
+</td>
+
+<td style="text-align:left;">
+
+America/New_York
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+06A
+
+</td>
+
+<td style="text-align:left;">
+
+Moton Field Municipal Airport
+
+</td>
+
+<td style="text-align:right;">
+
+32.46057
+
+</td>
+
+<td style="text-align:right;">
+
+-85.68003
+
+</td>
+
+<td style="text-align:right;">
+
+264
+
+</td>
+
+<td style="text-align:right;">
+
+-6
+
+</td>
+
+<td style="text-align:left;">
+
+A
+
+</td>
+
+<td style="text-align:left;">
+
+America/Chicago
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+06C
+
+</td>
+
+<td style="text-align:left;">
+
+Schaumburg Regional
+
+</td>
+
+<td style="text-align:right;">
+
+41.98934
+
+</td>
+
+<td style="text-align:right;">
+
+-88.10124
+
+</td>
+
+<td style="text-align:right;">
+
+801
+
+</td>
+
+<td style="text-align:right;">
+
+-6
+
+</td>
+
+<td style="text-align:left;">
+
+A
+
+</td>
+
+<td style="text-align:left;">
+
+America/Chicago
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+06N
+
+</td>
+
+<td style="text-align:left;">
+
+Randall Airport
+
+</td>
+
+<td style="text-align:right;">
+
+41.43191
+
+</td>
+
+<td style="text-align:right;">
+
+-74.39156
+
+</td>
+
+<td style="text-align:right;">
+
+523
+
+</td>
+
+<td style="text-align:right;">
+
+-5
+
+</td>
+
+<td style="text-align:left;">
+
+A
+
+</td>
+
+<td style="text-align:left;">
+
+America/New_York
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+09J
+
+</td>
+
+<td style="text-align:left;">
+
+Jekyll Island Airport
+
+</td>
+
+<td style="text-align:right;">
+
+31.07447
+
+</td>
+
+<td style="text-align:right;">
+
+-81.42778
+
+</td>
+
+<td style="text-align:right;">
+
+11
+
+</td>
+
+<td style="text-align:right;">
+
+-5
+
+</td>
+
+<td style="text-align:left;">
+
+A
+
+</td>
+
+<td style="text-align:left;">
+
+America/New_York
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+0A9
+
+</td>
+
+<td style="text-align:left;">
+
+Elizabethton Municipal Airport
+
+</td>
+
+<td style="text-align:right;">
+
+36.37122
+
+</td>
+
+<td style="text-align:right;">
+
+-82.17342
+
+</td>
+
+<td style="text-align:right;">
+
+1593
+
+</td>
+
+<td style="text-align:right;">
+
+-5
+
+</td>
+
+<td style="text-align:left;">
+
+A
+
+</td>
+
+<td style="text-align:left;">
+
+America/New_York
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </article></slide><slide class=""><hgroup><h2>Tabla aviones</h2></hgroup><article  id="tabla-aviones">
 
-<pre >## # A tibble: 3,322 x 9
-##    codigo_cola  anio tipo  fabricante modelo motores asientos velocidad
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;     &lt;int&gt;
-##  1 N10156       2004 Fixe~ EMBRAER    EMB-1~       2       55        NA
-##  2 N102UW       1998 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-##  3 N103US       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-##  4 N104UW       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-##  5 N10575       2002 Fixe~ EMBRAER    EMB-1~       2       55        NA
-##  6 N105UW       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-##  7 N107US       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-##  8 N108UW       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-##  9 N109UW       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-## 10 N110UW       1999 Fixe~ AIRBUS IN~ A320-~       2      182        NA
-## # ... with 3,312 more rows, and 1 more variable: tipo_motor &lt;chr&gt;</pre>
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+codigo_cola
+
+</th>
+
+<th style="text-align:right;">
+
+anio
+
+</th>
+
+<th style="text-align:left;">
+
+tipo
+
+</th>
+
+<th style="text-align:left;">
+
+fabricante
+
+</th>
+
+<th style="text-align:left;">
+
+modelo
+
+</th>
+
+<th style="text-align:right;">
+
+motores
+
+</th>
+
+<th style="text-align:right;">
+
+asientos
+
+</th>
+
+<th style="text-align:right;">
+
+velocidad
+
+</th>
+
+<th style="text-align:left;">
+
+tipo_motor
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+N10156
+
+</td>
+
+<td style="text-align:right;">
+
+2004
+
+</td>
+
+<td style="text-align:left;">
+
+Fixed wing multi engine
+
+</td>
+
+<td style="text-align:left;">
+
+EMBRAER
+
+</td>
+
+<td style="text-align:left;">
+
+EMB-145XR
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+55
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Turbo-fan
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+N102UW
+
+</td>
+
+<td style="text-align:right;">
+
+1998
+
+</td>
+
+<td style="text-align:left;">
+
+Fixed wing multi engine
+
+</td>
+
+<td style="text-align:left;">
+
+AIRBUS INDUSTRIE
+
+</td>
+
+<td style="text-align:left;">
+
+A320-214
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+182
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Turbo-fan
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+N103US
+
+</td>
+
+<td style="text-align:right;">
+
+1999
+
+</td>
+
+<td style="text-align:left;">
+
+Fixed wing multi engine
+
+</td>
+
+<td style="text-align:left;">
+
+AIRBUS INDUSTRIE
+
+</td>
+
+<td style="text-align:left;">
+
+A320-214
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+182
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Turbo-fan
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+N104UW
+
+</td>
+
+<td style="text-align:right;">
+
+1999
+
+</td>
+
+<td style="text-align:left;">
+
+Fixed wing multi engine
+
+</td>
+
+<td style="text-align:left;">
+
+AIRBUS INDUSTRIE
+
+</td>
+
+<td style="text-align:left;">
+
+A320-214
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+182
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Turbo-fan
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+N10575
+
+</td>
+
+<td style="text-align:right;">
+
+2002
+
+</td>
+
+<td style="text-align:left;">
+
+Fixed wing multi engine
+
+</td>
+
+<td style="text-align:left;">
+
+EMBRAER
+
+</td>
+
+<td style="text-align:left;">
+
+EMB-145LR
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+55
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Turbo-fan
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+N105UW
+
+</td>
+
+<td style="text-align:right;">
+
+1999
+
+</td>
+
+<td style="text-align:left;">
+
+Fixed wing multi engine
+
+</td>
+
+<td style="text-align:left;">
+
+AIRBUS INDUSTRIE
+
+</td>
+
+<td style="text-align:left;">
+
+A320-214
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+182
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Turbo-fan
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </article></slide><slide class=""><hgroup><h2>Tabla clima</h2></hgroup><article  id="tabla-clima">
 
-<pre >## # A tibble: 26,115 x 15
-##    origen  anio   mes   dia  hora temperatura punto_rocio humedad
-##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
-##  1 EWR     2013     1     1     1        39.0        26.1    59.4
-##  2 EWR     2013     1     1     2        39.0        27.0    61.6
-##  3 EWR     2013     1     1     3        39.0        28.0    64.4
-##  4 EWR     2013     1     1     4        39.9        28.0    62.2
-##  5 EWR     2013     1     1     5        39.0        28.0    64.4
-##  6 EWR     2013     1     1     6        37.9        28.0    67.2
-##  7 EWR     2013     1     1     7        39.0        28.0    64.4
-##  8 EWR     2013     1     1     8        39.9        28.0    62.2
-##  9 EWR     2013     1     1     9        39.9        28.0    62.2
-## 10 EWR     2013     1     1    10        41          28.0    59.6
-## # ... with 26,105 more rows, and 7 more variables: direccion_viento &lt;dbl&gt;,
-## #   velocidad_viento &lt;dbl&gt;, velocidad_rafaga &lt;dbl&gt;, precipitacion &lt;dbl&gt;,
-## #   presion &lt;dbl&gt;, visibilidad &lt;dbl&gt;, fecha_hora &lt;dttm&gt;</pre></article></slide>
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+origen
+
+</th>
+
+<th style="text-align:right;">
+
+anio
+
+</th>
+
+<th style="text-align:right;">
+
+mes
+
+</th>
+
+<th style="text-align:right;">
+
+dia
+
+</th>
+
+<th style="text-align:right;">
+
+hora
+
+</th>
+
+<th style="text-align:right;">
+
+temperatura
+
+</th>
+
+<th style="text-align:right;">
+
+punto_rocio
+
+</th>
+
+<th style="text-align:right;">
+
+humedad
+
+</th>
+
+<th style="text-align:right;">
+
+direccion_viento
+
+</th>
+
+<th style="text-align:right;">
+
+velocidad_viento
+
+</th>
+
+<th style="text-align:right;">
+
+velocidad_rafaga
+
+</th>
+
+<th style="text-align:right;">
+
+precipitacion
+
+</th>
+
+<th style="text-align:right;">
+
+presion
+
+</th>
+
+<th style="text-align:right;">
+
+visibilidad
+
+</th>
+
+<th style="text-align:left;">
+
+fecha_hora
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+EWR
+
+</td>
+
+<td style="text-align:right;">
+
+2013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+39.02
+
+</td>
+
+<td style="text-align:right;">
+
+26.06
+
+</td>
+
+<td style="text-align:right;">
+
+59.37
+
+</td>
+
+<td style="text-align:right;">
+
+270
+
+</td>
+
+<td style="text-align:right;">
+
+10.35702
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1012.0
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+2013-01-01 01:00:00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+EWR
+
+</td>
+
+<td style="text-align:right;">
+
+2013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+39.02
+
+</td>
+
+<td style="text-align:right;">
+
+26.96
+
+</td>
+
+<td style="text-align:right;">
+
+61.63
+
+</td>
+
+<td style="text-align:right;">
+
+250
+
+</td>
+
+<td style="text-align:right;">
+
+8.05546
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1012.3
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+2013-01-01 02:00:00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+EWR
+
+</td>
+
+<td style="text-align:right;">
+
+2013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+39.02
+
+</td>
+
+<td style="text-align:right;">
+
+28.04
+
+</td>
+
+<td style="text-align:right;">
+
+64.43
+
+</td>
+
+<td style="text-align:right;">
+
+240
+
+</td>
+
+<td style="text-align:right;">
+
+11.50780
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1012.5
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+2013-01-01 03:00:00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+EWR
+
+</td>
+
+<td style="text-align:right;">
+
+2013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+<td style="text-align:right;">
+
+39.92
+
+</td>
+
+<td style="text-align:right;">
+
+28.04
+
+</td>
+
+<td style="text-align:right;">
+
+62.21
+
+</td>
+
+<td style="text-align:right;">
+
+250
+
+</td>
+
+<td style="text-align:right;">
+
+12.65858
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1012.2
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+2013-01-01 04:00:00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+EWR
+
+</td>
+
+<td style="text-align:right;">
+
+2013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+<td style="text-align:right;">
+
+39.02
+
+</td>
+
+<td style="text-align:right;">
+
+28.04
+
+</td>
+
+<td style="text-align:right;">
+
+64.43
+
+</td>
+
+<td style="text-align:right;">
+
+260
+
+</td>
+
+<td style="text-align:right;">
+
+12.65858
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1011.9
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+2013-01-01 05:00:00
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+EWR
+
+</td>
+
+<td style="text-align:right;">
+
+2013
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+<td style="text-align:right;">
+
+37.94
+
+</td>
+
+<td style="text-align:right;">
+
+28.04
+
+</td>
+
+<td style="text-align:right;">
+
+67.21
+
+</td>
+
+<td style="text-align:right;">
+
+240
+
+</td>
+
+<td style="text-align:right;">
+
+11.50780
+
+</td>
+
+<td style="text-align:right;">
+
+NA
+
+</td>
+
+<td style="text-align:right;">
+
+0
+
+</td>
+
+<td style="text-align:right;">
+
+1012.4
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+2013-01-01 06:00:00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</article></slide><slide class=""><hgroup><h2>Tipos de claves</h2></hgroup><article  id="tipos-de-claves">
+
+<ul>
+<li><p><strong>Primaria</strong> identifica únicamente una observación en su propia tabla.</p></li>
+<li><p><strong>Foránea</strong> identifica únicamente una observación en otra tabla.</p></li>
+<li><p><strong>Subrogada</strong> o también conocida como clave sustituta, es un campo numérico de una tabla cuyo único requisito es almacenar un valor numérico único para cada fila de la tabla, de forma totalmente independiente a los datos de negocio, que habitualmente no tiene significado por sí misma</p></li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
