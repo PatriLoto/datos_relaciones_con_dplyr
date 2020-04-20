@@ -15,7 +15,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(include = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
 options(htmltools.dir.version = FALSE)
 options(servr.daemon = TRUE)
 
@@ -31,10 +31,10 @@ options(servr.daemon = TRUE)
 1. Operaciones con conjuntos
 
 ---
-class: inverse, center, middle
+class: inverse, center, top
 background-image: url("largada.jpg")
 background-size:cover
-# Empecemos
+# ¡Empecemos!
 
 
 ---
@@ -48,9 +48,9 @@ background-image: url("vuelos.jpg")
 background-size:cover
 # Dataset
 
-Usaremos los datos sobre vuelos desde y hacia la ciudad de Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
+#### Usaremos los datos sobre vuelos desde y hacia la ciudad de Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
 
-```{r message=FALSE, warning=FALSE, include=FALSE, tidy=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, tidy=FALSE}
 library(tidyverse)
 library(datos)
 library(nycflights13)
@@ -60,56 +60,66 @@ library(DT)
 ```
 
 ---
-# `aeropuertos` contiene información de cada aeropuerto, identificado por su `código`.
 class: inverse, center, middle
 background-image: url("aeropuertos.jpg")
 background-size:cover
+# Aeropuertos
 
+### Contiene información de cada aeropuerto, identificado por su `código`.
 
 ---
 # aeropuertos
 
-```{r aeropuerto}
+```{r aeropuerto, echo=FALSE}
 knitr::kable(head(aeropuertos), format = 'html')
 
 ```
 
 ---
+
 class: inverse, center, middle
 background-image: url("aerolineas.jpg")
 background-size:cover
-# `aerolineas` permite observar el nombre completo de la aerolínea a partir de su código abreviado.
+# Aerolineas
+
+### Permite observar el nombre completo de la aerolínea a partir de su código abreviado.
 
 ---
 # aerolineas
 
-```{r aerolineas}
+```{r aerolineas, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::kable(head(aerolineas), format = 'html')
 ```
 ---
-class: inverse, center, middle
+
+class: inverse, center, top
 background-image: url("aviones.jpg")
 background-size:cover
-# `aviones` entrega información de cada avión, identificado por su `codigo_cola`.
+# Aviones
+
+### Entrega información de cada avión, identificado por su `codigo_cola`.
 
 ---
 
 # aviones
 
-```{r aviones }
+```{r aviones, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::kable(head(aviones), format = 'html')
 ```
 
 ---
-class: inverse, center, middle
+
+class: inverse, center, top
 background-image: url("clima.jpg")
 background-size:cover
-# `clima` entrega información del clima en cada aeropuerto de Nueva York para cada hora.
+# Clima
+
+### Entrega información del clima en cada aeropuerto de Nueva York para cada hora.
 ---
 
 # clima
 
-```{r clima}
+```{r clima, echo=FALSE}
 knitr::kable(head(clima), format = 'html')
 ```
 ---
@@ -121,11 +131,7 @@ Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras re
 
 
 Diagrama de relaciones entre las diferentes tablas del dataset **vuelos**:
-<img src="relational-nycflights.svg" width="100%" align="middle" />
-
-# ```{r, echo = FALSE}
-# knitr::include_graphics("relational-nycflights.svg")
-# ```
+<img src="relational-nycflights.svg" width="60%" align="middle" />
 
 
 
@@ -150,9 +156,9 @@ Existen diferentes tipos de claves:
 
 
 class: inverse, center, middle
-background-image: url("soga3.jpg")
+background-image: url("soga2.jpg")
 background-size:cover
-#Joins
+# Joins
 
 ---
 
@@ -182,16 +188,17 @@ La primera herramienta que miraremos para combinar pares de variables es la __un
 Mas información en https://dplyr.tidyverse.org/reference/join.html]
 
 ---
-
-```{r}
+# Uniones de transformación
+```{r vuelos2, include=FALSE}
 vuelos2 <- vuelos %>%
   select(anio:dia, hora, origen, destino, codigo_cola, aerolinea)
 vuelos2
 ```
-
+---
+# Left Join o unión por izquierda
 Imagina que quieres incluir el nombre completo de la aerolínea en `vuelos2`. Puedes combinar los datos de `aerolinas` y `vuelos2` con `left_join()` (*union_izquierda*):
 
-```{r}
+```{r union_vuelos_aerolinea}
 vuelos2 %>%
   select(-origen, -destino) %>%
   left_join(aerolineas, by = "aerolinea")
