@@ -31,10 +31,18 @@ xaringan:::list_css()
 # ¿Qué vamos a aprender?
 
 1. Tipos de claves: primaria, foránea y subrogada
-1. ¿Qué es una relación? 
-1. Uniones de transformación
-1. Uniones de filtrado
-1. Operaciones con conjuntos
+
+
+2. ¿Qué es una relación? 
+
+
+3. Uniones de transformación
+
+
+4. Uniones de filtrado
+
+
+5. Operaciones con conjuntos
 ---
 
 class: inverse, center, top
@@ -48,7 +56,7 @@ background-size:cover
 ---
 class: inverse, center, middle
 
-## Motivación: 
+## Motivación
 #### En la vida real es raro que un análisis de datos involucre una única tabla de datos, por el contrario necesitaremos trabajar con más de un dataset, por lo que será de suma utilidad aprender a unir dos o más tablas. Para esto, aprenderemos los conjuntos de verbos que facilitan las **uniones** o  **JOINS**.
 
 ---
