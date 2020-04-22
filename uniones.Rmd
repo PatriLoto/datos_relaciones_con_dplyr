@@ -2,10 +2,12 @@
 title: "Datos Relacionales"
 subtitle: "with dplyr"
 author: "Patricia Loto"
-date: "2020/13/04"
+date: 'R/Medicine 2018<br><br>
+ `r icon::fa("link")`[bit.ly/jlt-rmed2018](https://bit.ly/jlt-rmed2018)
+ <br>`r icon::fa("twitter")` [jent103](https://twitter.com/jent103)'
 output:
   xaringan::moon_reader:
-    css: "summer.css"
+    css: "summer_light.css"
     css-fonts: "metropolis-fonts"
     #css: [default, metropolis-fonts]
     nature:
@@ -17,6 +19,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
                       fig.width = 10.5, fig.height = 4, 
                       comment = NA, rows.print = 16)
@@ -45,7 +48,8 @@ background-size:cover
 ---
 class: inverse, center, middle
 
-#### Motivación: en la vida real es raro que un análisis de datos involucre una única tabla de datos, por el contrario necesitaremos trabajar con más de un dataset, por lo que será de suma utilidad aprender a unir dos o más tablas. Para esto, aprenderemos los conjuntos de verbos que facilitan las **uniones** o  **JOIN**.
+## Motivación: 
+#### En la vida real es raro que un análisis de datos involucre una única tabla de datos, por el contrario necesitaremos trabajar con más de un dataset, por lo que será de suma utilidad aprender a unir dos o más tablas. Para esto, aprenderemos los conjuntos de verbos que facilitan las **uniones** o  **JOINS**.
 
 ---
 class: inverse, center, top
@@ -63,6 +67,7 @@ library(nycflights13)
 library(here)
 library(dplyr)
 library(DT)
+library(icon)
 ```
 
 ---
@@ -145,6 +150,7 @@ knitr::kable(head(clima), format = 'html')
 
 Las variables usadas para conectar cada par de variables se llaman **claves** (del inglés _key_). Una clave es una variable (o un conjunto de variables) que identifican de manera única una observación. En casos simples, una sola variable es suficiente para identificar una observación. Por ejemplo, cada avión está identificado de forma única por su `codigo_cola`. En otros casos, se pueden necesitar múltiples variables. Por ejemplo, para identificar una observación en `clima` se necesitan cinco variables:  `anio`, `mes`, `dia`, `hora` y `origen`.
 
+---
 Existen diferentes tipos de claves:
 
 * Una **clave primaria** identifica únicamente una observación en su propia tabla.
@@ -155,7 +161,8 @@ Existen diferentes tipos de claves:
   Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la
   tabla `vuelos`, en la que une cada vuelo con un único avión.
   
-* **Clave subrogada**
+* **Clave subrogada**, campo numérico cuyo único requisito es almacenar un valor numérico único para cada fila de la tabla, de forma totalmente independiente a los datos de negocio, que habitualmente no tiene significado por sí misma.
+
   
 ---
 class: inverse, center, middle
@@ -178,7 +185,7 @@ Para trabajar con datos relacionales necesitas verbos que funcionen con pares de
 
 ---
 # Uniones de transformación 
-La primera herramienta que miraremos para combinar pares de variables es la __unión de transformación__ (**_mutating join_**). Una unión de transformación te permite combinar variables a partir de dos tablas. 
+La  **__unión de transformación__** o **_mutating join_** te permite combinar variables a partir de dos tablas. 
 
 --
 1. Primero busca coincidencias de observaciones de acuerdo a sus claves,
@@ -268,6 +275,17 @@ dplyr::band_instruments
 ## Mutating Joins
 
 ### Left Join
+
+.pull-left[
+```{r plot-last, fig.show = 'hide'}
+band_members %>% left_join(band_instruments)
+```
+]
+
+.pull-right[
+```{r ref.label = 'plot-last', echo = FALSE}
+```
+]
 
 ```{r message=FALSE, warning=FALSE}
 band_members %>% left_join(band_instruments)
