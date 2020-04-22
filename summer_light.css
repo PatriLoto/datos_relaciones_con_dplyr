@@ -1,0 +1,351 @@
+/*Use same font throughout app*/
+@import url("//fonts.googleapis.com/css?family=Lato");
+@import url("//fonts.googleapis.com/css?family=Inconsolata:wght@400;600");
+@import url("//fonts.googleapis.com/css?family=Noto+Serif");
+.family=Inconsolata:wght@400;600
+@import url("//fonts.googleapis.com/css?family=Monserrat");
+
+.remark-code, .remark-inline-code {font-family: 'Monserrat'}
+
+* {
+  font-family: 'Lato'!important ;
+  color: #555555 ;
+}
+a, a > code {
+  color: #3B9AB2;
+  font-weight: 600;
+  font-size: 50px;
+
+  text-decoration: none;
+  font-family: 'Inconsolata',
+  
+}
+
+body {
+    font-family: 'Noto Serif';
+}
+
+/*para cambiar la fuente del código*/
+.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; }
+
+
+/*Colour hyperlinks*/
+a {
+  color: #0054A6;
+}
+
+a:hover {
+  color: #f50858;
+}
+
+a:active {
+  color: #EBCC2A!important;
+}
+/*#00a08a   */
+.footnote {
+  position: absolute;
+  color: #062e28 !important;
+  bottom: 3em;
+  padding-right: 4em;
+  font-size: 95%;
+}
+.remark-code-line-highlighted     { 
+background-color: #EBCC2A !important; }
+
+.pre {
+  white-space: pre-wrap;
+}
+
+/* color tweak */
+.inverse {
+  background-color: #F9F2F4;
+  color: #F4F4F4;
+
+}
+
+
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #EBCC2A;
+}
+/* Two-column layout  #F4F4F4 #EBCC2A  #1f0404*/
+.left-column {
+  color: #777;
+  width: 20%;
+  height: 92%;
+  float: left;
+}
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #000;
+}
+
+/* slightly thiner to suppor aspect ration */
+.right-column {
+  width: 75%;
+  float: right;
+  padding-top: 1em;
+}
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+.pull-right ~ * {
+  clear: both;
+}
+img, video, iframe {
+  max-width: 100%;
+}
+blockquote {
+  border-left: solid 5px lightgray;
+  padding-left: 1em;
+  color: #e7ddcd;
+ }
+
+
+/* adjust table horizontal spacing */
+th, td {
+    padding:0 15px 0 15px;
+}
+
+.remark-slide table {
+  margin: 90%;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+
+.remark-slide table thead th { border-bottom: 1px solid #555555}
+th, td { padding: 5px; }
+.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #F4B5BD}  /*#c5dfe7 e2cddd*/
+
+.remark-inline-code{
+  /* background: #F5F5F5; /* lighter */
+  /*background: #e7e8e2; /* darker */
+  background: #b0e0e6;
+  border-radius: 3px;
+  padding: 4px;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: red;
+}
+
+
+@page { margin: 0; }
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+/*Select box*/
+select:focus {
+    border-color: #a8c4b7;  
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px #EC7171,0 0 8px #EC7171;
+    box-shadow: inset 0 1px 1px #EC7171,0 0 8px #EC7171;
+}
+
+/*Select options - currently not working*/
+option:hover {
+  background-color: #EC7171 !important
+}*/
+
+/*Selected table row*/
+table.dataTable tr.selected td, table.dataTable td.selected {
+    background-color: #a8c4b7 !important;
+}
+
+/*Hover table row*/
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #b4ccc1!important;
+}
+
+
+/*~~~~~~~~~~~~~~*/
+/* RU additions */
+/*~~~~~~~~~~~~~~*/
+
+/* Title slide */
+
+
+/* H1 fonts */
+.title-slide h1 {
+  color: #515151 !important;  /*gris*/
+  padding-top: 150px;
+  font-weight: normal;
+  font-size: 70px;
+  text-align: center
+ padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+/* H2 fonts */
+.title-slide h2 {
+  color: #E1AF00;         /* #E1AF00 F4F4F4 #FA4E63 gris bien claro casi blanco, */ 
+  font-size: 55px;
+  text-align: center;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+/* H3 fonts #2c204d #666666 */
+.title-slide h3 {
+  font-size: 35px;
+  font-weight: normal;
+  color:#2c204d;
+  text-align: center;
+  text-shadow: none;
+  padding: 0px;
+  margin: 0px;
+  line-height: 1;
+}
+
+/* Remove slide count */
+.title-slide .remark-slide-number {
+  text-shadow: none;
+}
+
+/*~~~~~~~~~~~~~~~~~~*/
+/* SECTION DIVIDERS */
+/*~~~~~~~~~~~~~~~~~~*/
+
+/* section divider pink */
+.title-slide-section-pink {
+  background-color: #FA4E63;  /*#E1AF00 coral*/
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+}
+
+/* section divider pink H1 fonts */
+.title-slide-section-pink h1, .title-slide-section-pink  h2, .title-slide-section-pink h3, .title-slide-section-pink  p {
+  /*color: #fff;*/
+}
+
+/* section divider grey */
+.title-slide-section-grey {
+  background-color: #000000;  /*#000000  515151*/
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+}
+
+/* section divider grey H1 fonts */
+.title-slide-section-grey h1, .title-slide-section-grey h2, .title-slide-section-grey h3 {
+  color: #fff;
+}
+
+.title-slide-section-grey p {
+  color: #fff;
+}
+
+/*~~~~~~~~~~~~~~~~~~*/
+/* FINAL SLIDE      */
+/*~~~~~~~~~~~~~~~~~~*/
+
+.title-slide-final {
+  background-color: #E1AF00;
+  color: #ffffff;
+  padding-left: 100px;
+  text-shadow: 0 0 20px #333;
+  text-align: center;
+}
+
+.title-slide-final h1 {
+  color: #cc0033;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~*/
+/* Global adjustments */
+/*~~~~~~~~~~~~~~~~~~~~*/
+
+/* Add padding to all slides for 16:9 aspect ratio */
+.remark-slide-content {
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+}
+
+/* Color adjustments for text */
+
+/* Make bold syntax compile to RU-pink */
+strong {
+  color: #FA4E63; /*cc0033 FA4E63*/
+}
+
+.RUrpink {
+  color: #f0126c;
+}
+
+/* Add blue tag */
+.blue {
+  color: #0000CC;
+  font-weight: bold;
+}
+
+/* Add grey tag */
+.grey {
+  color: #515151;
+}
+
+.lightgrey {
+  color: #818181;
+}
+
+/* Force black */
+.black {
+  color: black;
+  font-weight: bold;
+}
+
+/* Add white tag */
+.white {
+  color: #E1AF00;
+}
+
+/* Color adjustments to headers */
+h1 {
+  color: #FA4E63;
+}
+
+h2 {
+  color: #515151;
+}
+h3 {
+  color: black;
+}
+
+h4 {
+  color: #2c204d;
+}
+
+/* Font size tags */
+.big {
+  font-size: 1.6em;
+}
+
+/* ru blockquote */
+ru-blockquote {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-left: solid 10px #FA4E63;
+  background-color: #818181;
+  padding: 1em;
+  color: #fff;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
