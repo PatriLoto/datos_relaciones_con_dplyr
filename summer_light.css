@@ -14,7 +14,7 @@
 a, a > code {
   color: #3B9AB2;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 35px;
 
   text-decoration: none;
   font-family: 'Inconsolata',
@@ -47,7 +47,7 @@ a:active {
   color: #062e28 !important;
   bottom: 3em;
   padding-right: 4em;
-  font-size: 95%;
+  font-size: 55px.;
 }
 .remark-code-line-highlighted     { 
 background-color: #EBCC2A !important; }
@@ -64,7 +64,11 @@ background-color: #EBCC2A !important; }
 }
 
 
-.inverse h1, .inverse h2, .inverse h3 {
+.inverse h1, .inverse h3 {
+  color: #F4F4F4;
+}
+
+.inverse h2 {
   color: #EBCC2A;
 }
 /* Two-column layout  #F4F4F4 #EBCC2A  #1f0404*/
@@ -110,8 +114,8 @@ th, td {
     padding:0 15px 0 15px;
 }
 
+/*  margin: 90%;margin-right: 5%;*/
 .remark-slide table {
-  margin: 90%;
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
 }
@@ -190,7 +194,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   color: #515151 !important;  /*gris*/
   padding-top: 150px;
   font-weight: normal;
-  font-size: 70px;
+  font-size: 75px;
   text-align: center
  padding-bottom: 18px;
   margin-bottom: 18px;
