@@ -2,13 +2,11 @@
 title: "Datos Relacionales"
 subtitle: "with dplyr"
 author: "Patricia Loto"
-date: 'R/Medicine 2018<br><br>
- `r icon::fa("link")`[bit.ly/jlt-rmed2018](https://bit.ly/jlt-rmed2018)
- <br>`r icon::fa("twitter")` [jent103](https://twitter.com/jent103)'
+date: '13/04/2020'
 output:
   xaringan::moon_reader:
     css: "summer_light.css"
-    css-fonts: "metropolis-fonts"
+    #css-fonts: "metropolis-fonts"
     #css: [default, metropolis-fonts]
     nature:
       autoplay: 30000  
@@ -32,17 +30,13 @@ xaringan:::list_css()
 
 1. Tipos de claves: primaria, foránea y subrogada
 
+1. ¿Qué es una relación? 
 
-2. ¿Qué es una relación? 
+1. Uniones de transformación
 
+1. Uniones de filtrado
 
-3. Uniones de transformación
-
-
-4. Uniones de filtrado
-
-
-5. Operaciones con conjuntos
+1. Operaciones con conjuntos
 ---
 
 class: inverse, center, top
@@ -64,7 +58,7 @@ class: inverse, center, top
 color-text:black
 background-image: url("vuelos.jpg")
 background-size:cover
-# Dataset
+## Dataset
 
 #### Usaremos los datos sobre vuelos desde y hacia la ciudad de Nueva York, incluidos en el paquete **datos**, para aprender sobre datos relacionales. El paquete **datos** contiene cuatro tablas que se relacionan con la tabla `vuelos`:
 
@@ -106,7 +100,8 @@ background-size:cover
 # aerolineas
 
 ```{r aerolineas, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::kable(head(aerolineas), format = 'html')
+#knitr::kable(head(aerolineas), format = 'html')
+aerolineas
 ```
 
 ---
@@ -121,7 +116,8 @@ background-size:cover
 # aviones
 
 ```{r aviones, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::kable(head(aviones), format = 'html')
+#knitr::kable(head(aviones), format = 'html')
+aviones
 ```
 
 ---
@@ -136,13 +132,14 @@ background-size:cover
 # clima
 
 ```{r clima, echo=FALSE}
-knitr::kable(head(clima), format = 'html')
+#knitr::kable(head(clima), format = 'html')
+glimpse(clima)
 ```
 
 ---
 # Relaciones
 
-* Recordemos que, se le llaman **datos relacionales** a múltiples tablas de datos, ya que no solo importan los conjuntos de datos individuales, sino que también sus relaciones son importantes.
+* Recordemos que, se llaman **datos relacionales** a múltiples tablas de datos, ya que no solo importan los conjuntos de datos individuales, sino que también sus relaciones son importantes.
 
 
 --
@@ -193,10 +190,10 @@ Para trabajar con datos relacionales necesitas verbos que funcionen con pares de
 
 ---
 # Uniones de transformación 
-La  **__unión de transformación__** o **_mutating join_** te permite combinar variables a partir de dos tablas. 
+La  **__unión de transformación__** o **_mutating join_** permite combinar variables a partir de dos tablas. 
 
 --
-1. Primero busca coincidencias de observaciones de acuerdo a sus claves,
+1. Busca coincidencias de observaciones entre ambas tablas de acuerdo a sus claves,
 
 --
 1. Luego copia las variables de una tabla en la otra.
@@ -211,7 +208,7 @@ Mas información en https://dplyr.tidyverse.org/reference/join.html]
 
 Las funciones de unión, Tal como `mutate()`, agregan variables hacia la derecha, por lo que si tienes muchas variables inicialmente, las nuevas variables no se imprimirán.
 
-Para lo tanto, crearemos un conjunto de datos más angosto para que sea más fácil ver qué es lo que está ocurriendo: 
+Por lo tanto, crearemos un conjunto de datos más angosto para que sea más fácil ver qué es lo que está ocurriendo: 
 ```{r vuelos2, echo=TRUE}
 vuelos2 <- vuelos %>%
   select(anio:dia, hora, origen, destino, codigo_cola, aerolinea)
@@ -219,27 +216,31 @@ vuelos2
 ```
 ---
 #  Unión por izquierda ó Left Join 
-Imagina que quieres incluir el nombre completo de la aerolínea en `vuelos2`. Puedes combinar los datos de `aerolinas` y `vuelos2` con `left_join()` (*union_izquierda*):
+Queremos incluir el nombre completo de la aerolínea en la tabla `vuelos2`.
+¿Cómo lo hacemos? Combinamos los datos de `vuelos2` y `aerolinas` con un `left_join()` (*union_izquierda*):
 
 ```{r vuelos_aerolinea, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
+
 vuelos2 %>%
   select(-origen, -destino) %>%
-  left_join(aerolineas, by = "aerolinea") #<<
+  left_join(aerolineas, by = "aerolinea")%>% head(10)#<<
+  
 ```
 
 ---
 #  Unión por izquierda ó Left Join 
 
-El resultado de unir `aerolineas` y `vuelos2` es la inclusión de una variable adicional: `nombre`. Esta es la razón de que llamemos unión de transformación a este tipo de unión.
+El resultado de unir `vuelos2` y `aerolineas` es la inclusión de una variable adicional: `nombre` en la primera tabla. Esta es la razón de que llamemos unión de transformación a este tipo de unión.
 
 ```{r union_vuelos_aerolinea, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
 vuelos2 %>%
   select(-origen, -destino) %>%
-  left_join(aerolineas, by = "aerolinea") #<<
+  left_join(aerolineas, by = "aerolinea") %>% head(10) #<<
+  
 ```
 
-
 ---
+
 #  Unión por derecha ó Right Join 
 
 ---
@@ -248,10 +249,19 @@ vuelos2 %>%
 ```{r echo=FALSE}
 knitr::include_graphics("join-outer.svg")
 ```
+Representación gráfica de las uniones exteriores_
 
-Para ayudarte a entender las uniones, usaremos una representación gráfica:
+Una unión exterior mantiene las observaciones que aparecen en al menos una de las tablas. Existen tres tipos de uniones exteriores:
 
-<!-- <img src="join-outer.png" width="10%" align="right" /> -->
+Una unión izquierda (left join) mantiene todas las observaciones en x.
+Una unión derecha (right join) mantiene todas las observaciones en y.
+Una unión completa (full join) mantiene todas las observaciones en x e y.
+
+<!-- <img src="join-outer.png" width="10%" align="right" 
+
+---
+
+<!-- <img src="join-outer.png" width="10%" align="right" />
 
 ---
 

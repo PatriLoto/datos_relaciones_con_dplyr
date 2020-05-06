@@ -13,16 +13,32 @@
 }
 a, a > code {
   color: #3B9AB2;
-  font-weight: 600;
-  font-size: 35px;
-
+  /*font-weight: 600;*/
+  font-size: 45px;
   text-decoration: none;
   font-family: 'Inconsolata',
   
 }
 
+
+.title-slide a, a > code {
+    color: #aadff2;
+    text-decoration: none;
+  }
+}
+/* ESTO AGREGUÉ */
+
+div.my-footer span {
+    font-size: 14pt;
+    color: #125972;
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+}
+
 body {
     font-family: 'Noto Serif';
+    font-size: 14pt;
 }
 
 /*para cambiar la fuente del código*/
@@ -41,14 +57,23 @@ a:hover {
 a:active {
   color: #EBCC2A!important;
 }
+
+
 /*#00a08a   */
 .footnote {
   position: absolute;
   color: #062e28 !important;
+  bottom: 0px;
+  left: 0px;
+  height: 30px;
+  width: 100%;
   bottom: 3em;
-  padding-right: 4em;
-  font-size: 55px.;
+ /* padding-right: 4em;*/
+ /* font-size: 55px.;*/
 }
+
+
+
 .remark-code-line-highlighted     { 
 background-color: #EBCC2A !important; }
 
@@ -71,13 +96,17 @@ background-color: #EBCC2A !important; }
 .inverse h2 {
   color: #EBCC2A;
 }
+
+
 /* Two-column layout  #F4F4F4 #EBCC2A  #1f0404*/
+
 .left-column {
   color: #777;
   width: 20%;
   height: 92%;
   float: left;
 }
+
 .left-column h2:last-of-type, .left-column h3:last-child {
   color: #000;
 }
@@ -88,10 +117,12 @@ background-color: #EBCC2A !important; }
   float: right;
   padding-top: 1em;
 }
+
 .pull-left {
   float: left;
   width: 47%;
 }
+
 .pull-right {
   float: right;
   width: 47%;
@@ -102,6 +133,8 @@ background-color: #EBCC2A !important; }
 img, video, iframe {
   max-width: 100%;
 }
+
+
 blockquote {
   border-left: solid 5px lightgray;
   padding-left: 1em;
