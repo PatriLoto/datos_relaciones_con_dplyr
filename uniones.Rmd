@@ -190,6 +190,7 @@ Para trabajar con datos relacionales necesitas verbos que funcionen con pares de
 
 ---
 # Uniones de transformación 
+
 La  **__unión de transformación__** o **_mutating join_** permite combinar variables a partir de dos tablas. 
 
 --
@@ -206,7 +207,7 @@ Mas información en https://dplyr.tidyverse.org/reference/join.html]
 ---
 # Uniones de transformación
 
-Las funciones de unión, Tal como `mutate()`, agregan variables hacia la derecha, por lo que si tienes muchas variables inicialmente, las nuevas variables no se imprimirán.
+Las funciones de unión, tal como `mutate()`, agregan variables hacia la derecha, por lo que si tienes muchas variables inicialmente, las nuevas variables no se imprimirán.
 
 Por lo tanto, crearemos un conjunto de datos más angosto para que sea más fácil ver qué es lo que está ocurriendo: 
 ```{r vuelos2, echo=TRUE}
@@ -214,23 +215,31 @@ vuelos2 <- vuelos %>%
   select(anio:dia, hora, origen, destino, codigo_cola, aerolinea)
 vuelos2
 ```
+
 ---
 #  Unión por izquierda ó Left Join 
+
 Queremos incluir el nombre completo de la aerolínea en la tabla `vuelos2`.
-¿Cómo lo hacemos? Combinamos los datos de `vuelos2` y `aerolinas` con un `left_join()` (*union_izquierda*):
+
+¿Cómo lo hacemos? Combinamos los datos de `vuelos2` y `aerolineas` con un `left_join()` (*union_izquierda*):
 
 ```{r vuelos_aerolinea, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 
 vuelos2 %>%
   select(-origen, -destino) %>%
-  left_join(aerolineas, by = "aerolinea")%>% head(10)#<<
+  left_join(aerolineas, by = "aerolinea")%>% head(7)#<<
   
 ```
+
+# ```{r}
+<!-- # vuelos2 %>%head(10)#<< -->
+<!-- ``` -->
+
 
 ---
 #  Unión por izquierda ó Left Join 
 
-El resultado de unir `vuelos2` y `aerolineas` es la inclusión de una variable adicional: `nombre` en la primera tabla. Esta es la razón de que llamemos unión de transformación a este tipo de unión.
+El resultado de unir `vuelos2` y `aerolineas` es la inclusión de una variable adicional, `nombre` en la primera tablaPor esta razón llamamos unión de transformación a este tipo de unión.
 
 ```{r union_vuelos_aerolinea, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
 vuelos2 %>%
@@ -249,19 +258,18 @@ vuelos2 %>%
 ```{r echo=FALSE}
 knitr::include_graphics("join-outer.svg")
 ```
-Representación gráfica de las uniones exteriores_
+Representación gráfica de las uniones exteriores
 
-Una unión exterior mantiene las observaciones que aparecen en al menos una de las tablas. Existen tres tipos de uniones exteriores:
+Una **unión exterior** mantiene las observaciones que aparecen en al menos una de las tablas. Existen tres tipos de uniones exteriores:
 
-Una unión izquierda (left join) mantiene todas las observaciones en x.
-Una unión derecha (right join) mantiene todas las observaciones en y.
-Una unión completa (full join) mantiene todas las observaciones en x e y.
+Una **unión izquierda (left join)** mantiene todas las observaciones en x.
+Una **unión derecha (right join)** mantiene todas las observaciones en y.
+Una **unión completa (full join)** mantiene todas las observaciones en x e y.
 
-<!-- <img src="join-outer.png" width="10%" align="right" 
 
----
+!-- <img src="join-outer.png" width="10%" align="right
 
-<!-- <img src="join-outer.png" width="10%" align="right" />
+
 
 ---
 
@@ -270,6 +278,7 @@ Otra forma de ilustrar diferentes tipos de uniones es mediante un diagrama de Ve
 
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("join-venn.svg")
+
 ```
 
  * Puede ayudar a recordar qué uniones preservan las observaciones en qué tabla pero esto tiene una limitante importante: un diagrama de Venn no puede mostrar qué ocurre con las claves que no identifican de manera única una observación.
