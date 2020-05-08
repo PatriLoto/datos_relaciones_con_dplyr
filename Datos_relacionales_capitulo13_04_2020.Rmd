@@ -35,16 +35,17 @@ Para trabajar con datos relacionales necesitas verbos que funcionen con pares de
 
 El lugar más común para encontrar datos relacionales es en un sistema _relacional_ de administración de bases de datos (*Relational Data Base Management System* en inglés), un concepto que abarca casi todas las bases de datos modernas. Si has usado una base de datos con anterioridad, casi seguramente fue SQL. Si es así, los conceptos de este capítulo debiesen ser familiares, aunque su expresión en **dplyr** es un poco distinta. En términos generales, **dplyr** es un poco más fácil de usar que SQLes, ya que dplyr se especializa en el análisis de datos: facilita las operaciones habituales, a expensas de dificultar otras que no se requieren a menudo para el análisis de datos.
 
-### Prerrequisitos
+### Paquete utilizados
 
-Vamos a explorar datos relacionales contenidos en el paquete **datos** usando los verbos para dos tablas de **dplyr**.
 
 ```{r setup2, message = FALSE}
+library(icon)
 library(tidyverse)
 library(datos)
 library(nycflights13)
 library(here)
-#install.packages("nycflights13")
+devtools::install_github("ropenscilabs/icon")
+#install.packages("icon")
 ```
 
 ## Datos sobre vuelos 
@@ -66,7 +67,7 @@ My content goes in here!
 * `aeropuertos` entrega información de cada aeropuerto, identificado por su `código`:
 
 ```{r}
-aeropuertos
+aeropuertos%>% select(nombre:zona_horaria)
 
 ```
 
