@@ -28,15 +28,15 @@ xaringan:::list_css()
 
 # ¿Qué vamos a aprender?
 
-1. Tipos de claves: primaria, foránea y subrogada
-
-1. ¿Qué es una relación? 
-
-1. Uniones de transformación
-
-1. Uniones de filtrado
-
-1. Operaciones con conjuntos
+ 1. Tipos de claves: primaria, foránea y subrogada
+ 
+ 1. ¿Qué es una relación? 
+ 
+ 1. Uniones de transformación
+ 
+ 1. Uniones de filtrado
+ 
+ 1. Operaciones con conjuntos
 ---
 
 class: inverse, center, top
@@ -143,30 +143,54 @@ glimpse(clima)
 
 
 --
-* Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras relaciones se construyen sobre esta idea simple: las relaciones entre tres o más tablas son siempre una propiedad de las relaciones entre cada par. 
+* Una clave primaria y su correspondiente clave foránea en otra tabla forman una relación. 
 
 --
+* Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras relaciones se construyen sobre esta idea simple: las relaciones entre tres o más tablas son siempre una propiedad de las relaciones entre cada par. 
+
+---
+# Relaciones
+
 * Diagrama de relaciones entre las diferentes tablas del dataset **vuelos**:
 
 <img src="relational-nycflights.svg" width="60%" align="center" />
 
+* `vuelos` se conecta con `aviones` a través de la variable  `codigo_cola`
+
+* `vuelos` se conecta con `aerolineas` a través de la variable `codigo_carrier`.
+
+* `vuelos` se conecta con `aeropuertos` de dos formas: a través de las variables `origen` y `destino`.
+
+* `vuelos` se conecta con `clima` a través de las variables origen (es decir,la ubicación) más `anio`, `mes`, `dia` y `hora` (el `horario`).
+
 ---
 # Claves
 
-Las variables usadas para conectar cada par de variables se llaman **claves** (del inglés _key_). Una clave es una variable (o un conjunto de variables) que identifican de manera única una observación. En casos simples, una sola variable es suficiente para identificar una observación. Por ejemplo, cada avión está identificado de forma única por su `codigo_cola`. En otros casos, se pueden necesitar múltiples variables. Por ejemplo, para identificar una observación en `clima` se necesitan cinco variables:  `anio`, `mes`, `dia`, `hora` y `origen`.
+* Las variables usadas para conectar cada par de variables se llaman **claves** (del inglés _key_). 
+
+* Una clave es una variable (o un conjunto de variables) que identifican de manera única una observación.
+
+* En casos simples, una sola variable es suficiente para identificar una observación. 
+**Ejemplo**: cada avión está identificado de forma única por su `codigo_cola`. 
+
+* En otros casos, se pueden necesitar múltiples variables. 
+**Ejemplo**, para identificar una observación en `clima` se necesitan cinco variables:  `anio`, `mes`, `dia`, `hora` y `origen`.
 
 ---
+# Claves
+
 Existen diferentes tipos de claves:
 
 * Una **clave primaria** identifica únicamente una observación en su propia tabla.
-  Por ejemplo, `aviones$codigo_cola` es una clave primaria, ya que identifica de
-  manera única cada avión en la tabla `aviones`.
+  Por ejemplo, `aviones$codigo_cola` es una clave primaria, ya que identifica de manera única cada avión en la tabla `aviones`.
 
 * Una **clave foránea** únicamente identifica una observación en otra tabla.
-  Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la
-  tabla `vuelos`, en la que une cada vuelo con un único avión.
+  Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la tabla `vuelos`, en la que une cada vuelo con un único avión.
   
 * **Clave subrogada**, campo numérico cuyo único requisito es almacenar un valor numérico único para cada fila de la tabla, de forma totalmente independiente a los datos de negocio, que habitualmente no tiene significado por sí misma.
+
+**Importante:** Una variable puede ser clave primaria y clave foránea a la vez. Por ejemplo, `origen` es parte de la clave primaria de la tabla `clima` y también una clave foránea de la tabla  `aeropuertos`, es decir, permite que el `clima` se relacione/enlace con un determinado aeropuerto.
+
 
   
 ---
@@ -178,7 +202,7 @@ background-size:cover
 ---
 #Joins
 
-
+Familias de verbos para trabajar entre pares de tablas
 Para trabajar con datos relacionales necesitas verbos que funcionen con pares de tablas. Existen tres familias de verbos diseñadas para trabajar con datos relacionales:
 
 1. **__Uniones de transformación__** (del inglés **_mutating joins_**), que agregan nuevas variables a un *data frame* a partir de las observaciones coincidentes en otra tabla.
@@ -187,6 +211,13 @@ Para trabajar con datos relacionales necesitas verbos que funcionen con pares de
 
 1. **__Operaciones de conjuntos__** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto.
 
+#### Sintaxis:
+
+`tabla1` %>% **TIPO_DE_UNION** %>% `tabla2` by = "key"
+
+*TIPO_DE_UNION*: inner_join, right_join, left_join, full_join, anti_join, semi_join
+
+*by* (según) le indicar a dplyr qué variable es la clave.
 
 ---
 # Uniones de transformación 
@@ -200,9 +231,19 @@ La  **__unión de transformación__** o **_mutating join_** permite combinar var
 1. Luego copia las variables de una tabla en la otra.
 
 
+.column.bg-main1[.content.vtop.center[
 
-.footnote[[*]
-Mas información en https://dplyr.tidyverse.org/reference/join.html]
+.pull.left[.pad1[.font2[#### Tipos:
+**unión interior**]]]]]
+.pull.right[.pad1[.font2[#### **unión exterior**]]]]]
+
+**unión interior**                        **unión exterior**
+--------------------------------------------------------------
+mantiene las observaciones       Una  mantiene las observaciones
+que aparecen en ambas tablas.   que aparecen en al menos una de las                                 tablas
+
+
+.footnote[Mas información en https://dplyr.tidyverse.org/reference/join.html]
 
 ---
 # Uniones de transformación
@@ -212,28 +253,54 @@ Las funciones de unión, tal como `mutate()`, agregan variables hacia la derecha
 Por lo tanto, crearemos un conjunto de datos más angosto para que sea más fácil ver qué es lo que está ocurriendo: 
 ```{r vuelos2, echo=TRUE}
 vuelos2 <- vuelos %>%
-  select(anio:dia, hora, origen, destino, codigo_cola, aerolinea)
+  select(anio:dia, hora, origen, destino, codigo_cola, aerolinea) %>% head(7)
 vuelos2
 ```
 
 ---
+
+# Entendiendo las uniones de transformación
+
+
+Una **unión exterior** mantiene las observaciones que aparecen en al menos una de las tablas. Existen tres tipos de uniones exteriores:
+
+* Una **unión izquierda (left join)** mantiene todas las observaciones en x.
+
+* Una **unión derecha (right join)** mantiene todas las observaciones en y.
+
+* Una **unión completa (full join)** mantiene todas las observaciones en x e y.
+
+
+---
+# Representación gráfica de las uniones exteriores
+
+```{r echo=FALSE, out.width = '50%'}
+knitr::include_graphics("join-outer.svg")
+```
+
+---
+
 #  Unión por izquierda ó Left Join 
 
 Queremos incluir el nombre completo de la aerolínea en la tabla `vuelos2`.
 
-¿Cómo lo hacemos? Combinamos los datos de `vuelos2` y `aerolineas` con un `left_join()` (*union_izquierda*):
+¿Cómo lo hacemos? 
+--
+
+Combinamos los datos de `vuelos2` y `aerolineas` 
+--
+
+con un `left_join()` (*union_izquierda*):
 
 ```{r vuelos_aerolinea, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 
-vuelos2 %>%
+union_tablas <- vuelos2 %>%
   select(-origen, -destino) %>%
-  left_join(aerolineas, by = "aerolinea")%>% head(7)#<<
+  left_join(aerolineas, by = "aerolinea")#<<
+
+
   
 ```
-
-# ```{r}
-<!-- # vuelos2 %>%head(10)#<< -->
-<!-- ``` -->
 
 
 ---
@@ -242,38 +309,13 @@ vuelos2 %>%
 El resultado de unir `vuelos2` y `aerolineas` es la inclusión de una variable adicional, `nombre` en la primera tablaPor esta razón llamamos unión de transformación a este tipo de unión.
 
 ```{r union_vuelos_aerolinea, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
-vuelos2 %>%
-  select(-origen, -destino) %>%
-  left_join(aerolineas, by = "aerolinea") %>% head(10) #<<
+union_tablas %>% head(10) #<<
   
 ```
-
 ---
 
-#  Unión por derecha ó Right Join 
+# Diagramas de Venn:
 
----
-# Entendiendo las uniones
-
-```{r echo=FALSE}
-knitr::include_graphics("join-outer.svg")
-```
-Representación gráfica de las uniones exteriores
-
-Una **unión exterior** mantiene las observaciones que aparecen en al menos una de las tablas. Existen tres tipos de uniones exteriores:
-
-Una **unión izquierda (left join)** mantiene todas las observaciones en x.
-Una **unión derecha (right join)** mantiene todas las observaciones en y.
-Una **unión completa (full join)** mantiene todas las observaciones en x e y.
-
-
-!-- <img src="join-outer.png" width="10%" align="right
-
-
-
----
-
-# Representando uniones con diagrama de Venn:
 Otra forma de ilustrar diferentes tipos de uniones es mediante un diagrama de Venn:
 
 ```{r, echo = FALSE, out.width = NULL}
@@ -281,13 +323,68 @@ knitr::include_graphics("join-venn.svg")
 
 ```
 
- * Puede ayudar a recordar qué uniones preservan las observaciones en qué tabla pero esto tiene una limitante importante: un diagrama de Venn no puede mostrar qué ocurre con las claves que no identifican de manera única una observación.
+ * Son útiles para recordar qué uniones preservan las observaciones en qué tabla 
+ 
+ 
+ * Tienen una limitante importante: un diagrama de Venn no puede mostrar qué ocurre con las claves que no identifican de manera única una observación.
  
 ---
 
-### Filtering Joins
+# Uniones de filtrado 
 
-<img src="join2.png" width="160%" align="middle" />
+Las **__Uniones de filtrado__** unen observaciones de la misma forma que las uniones de transformación pero afectan a las observaciones, no a las variables.
+
+####Tipos:
+
+  ** semi_join:** mantiene todas las observaciones en x con coincidencias en y.
+
+  ** anti_join:** descarta todas las observaciones en x con coincidencias en y.
+  
+---
+class: inverse, center, top
+background-image: url("banda1.jpg")
+background-size:cover
+# EJEMPLO 1
+### Dataset bandas e instrumentos
+---
+
+### Dataset bandas e instrumentos
+
+
+```{r message=FALSE, warning=FALSE}
+dplyr::band_members
+```
+
+```{r message=FALSE, warning=FALSE}
+dplyr::band_instruments
+```
+---
+
+## Uniones de filtrado
+
+### Semi Join
+```{r band_semi, echo=TRUE, message=FALSE, warning=FALSE}
+band_members %>% semi_join(band_instruments)
+```
+
+### Anti Join 
+```{r band_anti, echo=TRUE, message=FALSE, warning=FALSE}
+band_members %>% anti_join(band_instruments)
+```
+---
+
+# Operaciones de conjuntos
+
+**__Operaciones de conjuntos__** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto.
+
+* `intersect(x, y)`: devuelve las observaciones comunes en x e y.
+
+* `union(x, y)`: devuelve las observaciones únicas en x e y.
+
+* `setdiff(x, y)`: devuelve las observaciones en x pero no en y.
+
+### Dataset bandas e instrumentos
+
 
 ```{r message=FALSE, warning=FALSE}
 dplyr::band_members
@@ -299,59 +396,41 @@ dplyr::band_instruments
 
 
 ---
-## Mutating Joins
+### Uniones de Transformación
 
-### Left Join
-
-.pull-left[
-```{r plot-last, fig.show = 'hide'}
-band_members %>% left_join(band_instruments)
-```
-]
-
-.pull-right[
-```{r ref.label = 'plot-last', echo = FALSE}
-```
-]
-
-```{r message=FALSE, warning=FALSE}
-band_members %>% left_join(band_instruments)
+### Unión interna o Inner Join
+```{r band_inner, echo=TRUE, message=FALSE, warning=FALSE}
+band_members %>% inner_join(band_instruments)#<<
 ```
 
-### Right Join
-```{r message=FALSE, warning=FALSE}
-band_members %>% right_join(band_instruments)
-```
+
+**Importante:** La propiedad más importante de una unión interior es que las filas no coincidentes no se incluyen en el resultado. 
+
 ---
-<img src="dplyr.png" width="10%" align="right" />
+### Unión izquierda o Left Join
+
+```{r band_left, echo=TRUE, warning=FALSE, message=FALSE}
+band_members %>% left_join(band_instruments)#<<
+```
+
+### Unión derecha o Right Join
+```{r band_right, echo=TRUE, warning=FALSE, message=FALSE}
+band_members %>% right_join(band_instruments)#<<
+```
 
 ### Full Join
-```{r message=FALSE, warning=FALSE}
-band_members %>% full_join(band_instruments)
+```{r band_full, echo=TRUE, message=FALSE, warning=FALSE}
+band_members %>% full_join(band_instruments)#<<
 ```
 
-### Inner Join
-```{r message=FALSE, warning=FALSE}
-band_members %>% full_join(band_instruments)
-```
-
+class: inverse, center, middle
+background-image: url("marvel.jpg")
+background-size:cover
+# EJEMPLO 2: 
+### Dataset editoriales e cómics
 ---
-<img src="dplyr.png" width="10%" align="right" />
-
-## Filtering Joins
-
-### Semi Join
-```{r message=FALSE, warning=FALSE}
-band_members %>% semi_join(band_instruments)
-```
-
-### Anti Join 
-```{r message=FALSE, warning=FALSE}
-band_members %>% anti_join(band_instruments)
-```
-
 
 ---
 Fuente:
-.footnote[[*]El libro [R4DS]() y las slides de [Robust tools](https://github.com/gnab/remark/issues/142) de DjNavarro  in the future.
+.footnote[El libro [R4DS]() y las slides de [Robust tools](https://github.com/gnab/remark/issues/142) de DjNavarro  in the future.
 ---
