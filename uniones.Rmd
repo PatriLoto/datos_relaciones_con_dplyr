@@ -186,7 +186,7 @@ Existen diferentes tipos de claves:
 * Una **clave foránea** identifica de manera única una observación en otra tabla.
   Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la tabla `vuelos`, y une cada vuelo con un único avión.
   
-* **Clave subrogada**, campo numérico cuyo único requisito es almacenar un valor numérico único para cada fila de la tabla, de forma totalmente independiente a los datos de negocio, que habitualmente no tiene significado por sí misma.
+* Una **clave subrogada**, es aquella que tiene como único requisito almacenar un valor numérico único para cada fila de la tabla, el cual es totalmente independiente a los datos de negocio.
 
 **Importante:** Una variable puede ser clave primaria y clave foránea a la vez. Por ejemplo, `origen` es parte de la clave primaria de la tabla `clima` y también una clave foránea de la tabla  `aeropuertos`, es decir, permite que el `clima` se relacione/enlace con un determinado aeropuerto.
 
