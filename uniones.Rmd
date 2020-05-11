@@ -181,10 +181,10 @@ glimpse(clima)
 Existen diferentes tipos de claves:
 
 * Una **clave primaria** identifica únicamente una observación en su propia tabla.
-  Por ejemplo, `aviones$codigo_cola` es una clave primaria, ya que identifica de manera única cada avión en la tabla `aviones`.
+  Por ejemplo, `codigo_cola` es una clave primaria, ya que identifica de manera única cada avión en la tabla `aviones`.
 
-* Una **clave foránea** únicamente identifica una observación en otra tabla.
-  Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la tabla `vuelos`, en la que une cada vuelo con un único avión.
+* Una **clave foránea** identifica de manera única una observación en otra tabla.
+  Por ejemplo, `vuelos$codigo_cola` es una clave foránea, ya que aparece en la tabla `vuelos`, y une cada vuelo con un único avión.
   
 * **Clave subrogada**, campo numérico cuyo único requisito es almacenar un valor numérico único para cada fila de la tabla, de forma totalmente independiente a los datos de negocio, que habitualmente no tiene significado por sí misma.
 
