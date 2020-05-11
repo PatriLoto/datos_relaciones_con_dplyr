@@ -121,7 +121,7 @@ aviones
 ```
 
 ---
-class: inverse, center, top
+class: inverse, center, bottom
 background-image: url("clima.jpg")
 background-size:cover
 # Clima
@@ -143,7 +143,7 @@ glimpse(clima)
 
 
 --
-* Una clave primaria y su correspondiente clave foránea en otra tabla forman una relación. 
+* Una **clave primaria** y su correspondiente **clave foránea** en otra tabla forman una relación. 
 
 --
 * Las **relaciones** siempre se definen sobre un par de tablas. Todas las otras relaciones se construyen sobre esta idea simple: las relaciones entre tres o más tablas son siempre una propiedad de las relaciones entre cada par. 
@@ -161,7 +161,7 @@ glimpse(clima)
 
 * `vuelos` se conecta con `aeropuertos` de dos formas: a través de las variables `origen` y `destino`.
 
-* `vuelos` se conecta con `clima` a través de las variables origen (es decir,la ubicación) más `anio`, `mes`, `dia` y `hora` (el `horario`).
+* `vuelos` se conecta con `clima` a través de las variables origen (es decir,la ubicación) más `anio`, `mes`, `dia` y `hora`.
 
 ---
 # Claves
@@ -172,7 +172,6 @@ glimpse(clima)
 
 * En casos simples, una sola variable es suficiente para identificar una observación. 
 **Ejemplo**: cada avión está identificado de forma única por su `codigo_cola`. 
-
 * En otros casos, se pueden necesitar múltiples variables. 
 **Ejemplo**, para identificar una observación en `clima` se necesitan cinco variables:  `anio`, `mes`, `dia`, `hora` y `origen`.
 
