@@ -1,14 +1,20 @@
 # Datos relacionales
 
+
+--------------------
+## Librerías 
+--------------------  
+  
 library(tidyverse)
 library(datos)
 # library(nycflights13)
 library(here)
 
-
-# Dataset 
-
+------------------------
+## Dataset 
+------------------------
 # Tablas
+  
 # tabla aerolíneas: código_carrier(clave principal o primaria), nombre
 View(nycflights13::airlines)
 
@@ -29,16 +35,17 @@ View(nycflights13::weather)
 # simple consulta de aeropuertos
 nycflights13::airports %>% filter(faa=="ATL")  #EWR: nueva york
 
-
-* Claves
-
+------------------
+# Claves
+------------------
+  
 datos::aerolineas   # aerolinea/codigo_carrier(clave principal o primaria), nombre
 datos::aviones      # codigo_cola (clave principal o primaria), anio, tipo, fabricante, modelo, nro_motores, asientos, velocidad, tipo_motor
 datos::aeropuertos  # codigo_aeropuerto (clave principal o primaria), nombre, latitud, longitud, altura, zona_horaria, horario_verano, zona_horaria_americana, etc. 
 datos::clima        # origen, anio, mes, dia, hora, temperatura, punto_rocio, humedad, direccion_viento, velocidad_viento, velocidad_rafaga, precipitación, etc. Clave pricipal compuesta: origen, anio, mes, dia,hora.
 datos::vuelos  #anio, mes, dia, hora,vuelo, origen, destino,  codigo_cola, codigo_carrier, horario_salida, salida_programada, atraso_salida, horario_llegada,entre otros.
 
-* Verifico que las claves primarias
+# Verifico  las claves primarias
 
 # Verifico que las claves primarias sean únicas en aviones
 aviones %>%
@@ -61,9 +68,6 @@ clima %>%
 vuelos %>% 
   count(anio, mes, dia, hora, vuelo) %>%
   filter(n>1)
-
-
-
 
 
 # Probamos agregando otra clave, por ejemplo codigo_cola
@@ -91,48 +95,53 @@ vuelos_con_clave %>%
   count(id)%>%
   filter(n>1)
 
-Uniones de Transformación: permite combinar variables a partir de dos tablas. 
+--------------------------
+# UNIONES
+--------------------------  
+# Uniones de Transformación: permite combinar variables a partir de dos tablas. 
 
-1. Busca coincidencias de observaciones de acuerdo a sus claves y
-2. copia las variables de una tabla en la otra.
+# 1. Busca coincidencias de observaciones de acuerdo a sus claves y
+# 2. copia las variables de una tabla en la otra.
 
-Nota: Tal como mutate(), las funciones de unión agregan variables hacia la derecha, por lo que si tienes muchas variables 
-inicialmente las nuevas variables no se imprimirán
+# Nota: Tal como mutate(), las funciones de unión agregan variables hacia la derecha, por lo que si tienes muchas variables 
+# inicialmente las nuevas variables no se imprimirán
 
-Sintaxis: 
-  tabla_1 %>%
-  inner_join(tabla_2, by = "key")  key es la clave principal o primaria
+# Sintaxis: 
+#   tabla_1 %>%
+#   inner_join(tabla_2, by = "key")  key es la clave principal o primaria
 
 
 vuelos2 <- vuelos %>%
   select(anio:dia, hora, origen, destino, codigo_cola, aerolinea)
 vuelos2
 
-Supongamos que queremos incluir el nombre completo de la aerolínea en vuelos2.
+#Supongamos que queremos incluir el nombre completo de la aerolínea en vuelos2.
 
 vuelo_con_aerolinea <- vuelos2 %>%
   select(-origen, -destino) %>%
   left_join(aerolineas, by = "aerolinea")
 View(vuelo_con_aerolinea)
 
-El resultado de unir aerolineas y vuelos2 es la inclusión de una variable adicional: nombre. 
-Esta es la razón de que llamemos unión de transformación a este tipo de unión.
+# El resultado de unir aerolineas y vuelos2 es la inclusión de una variable adicional: nombre. 
+# Esta es la razón de que llamemos unión de transformación a este tipo de unión.
 
-¿Por qué utilizamos un left_join en lugar de un inner_join? Para que no se eliminen observaciones
+# ¿Por qué utilizamos un left_join en lugar de un inner_join? Para que no se eliminen observaciones
 
  vuelos2 %>%
   select(-origen, -destino) %>%
   inner_join(aerolineas, by = "aerolinea") # se eliminan 10 observaciones donde no haya coincidencias con las claves
 
-#vuelos2 %>%select(-origen, -destino)%>% filter(aerolinea == 'NA')  
- Opción 2:  podríamos obtener el mismo resultado usando mutate() junto a las operaciones
- de filtro de R base:
+ # Otra Opción:
+ #vuelos2 %>%select(-origen, -destino)%>% filter(aerolinea == 'NA') 
+ 
+ # Opción 2:  podríamos obtener el mismo resultado usando mutate() junto a las operaciones
+ # de filtro de R base:
    vuelos2 %>%
    select(-origen, -destino) %>%
    mutate(nombre = aerolineas$nombre[match(aerolinea, aerolineas$aerolinea)])
  
  
- Entendiendo la uniones
+ #Entendiendo la uniones
  
  x <- tribble(
    ~key, ~val_x,
@@ -148,41 +157,54 @@ y <- tribble(
   2, "y2",
   4, "y3"
 )
-
-
+-------------------
+# Union interna
+-------------------
+  
 union_interna <- x %>% inner_join(y, by="key")
- union_interna
- Trae como resultado una tabla con sólo dos filas u observaciones, en las cuales donde hubo coincidencia
  
- left_join()
+# union_interna: Trae como resultado una tabla con sólo dos filas u observaciones, en las cuales donde hubo coincidencia
+ 
+--------------------
+# union_izquierda
+-------------------  
+  
+ #left_join()
 union_izquierda<- x %>% left_join(y, by="key")
-union_izquierda
 
-Entonces obtengo una tabla de salida con 3 filas y 2 columnas.
-
-right_join()
+#Entonces obtengo una tabla de salida con 3 filas y 2 columnas.
+----------------
+# union_derecha
+----------------  
+  
+#right_join()
 union_derecha <-x %>% right_join(y, by="key")
-union_derecha
 
-Como resutado obtengo una tabla de 3 filas y 2 columnas, donde en la tercer fila, 
-tengo un valor nulo para x.  
+# Como resutado obtengo una tabla de 3 filas y 2 columnas, donde en la tercer fila, tengo un valor nulo para x.  
 
-full_join()
+-----------------
+# union_completa
+-----------------
+  
+#full_join()
 
 union_completa <- x %>% full_join(y, key="key")
-union_completa
- Obtengo una tabla de salida de 4 filas ya que se mantienen las observaciones de x e y.
+
+ #Obtengo una tabla de salida de 4 filas ya que se mantienen las observaciones de x e y.
  
  
- ** Importante: La unión que más frecuentemente se usa es la unión izquierda: es recomendable 
- usarla para buscar datos adicionales en otra tabla, ya que preserva las observaciones originales 
- incluso cuando no hay coincidencias entre ambas tablas. La unión izquierda debiera ser tu
- unión por defecto, a menos que tengas un motivo importante para preferir una de las otras.
+ # ** Importante: La unión que más frecuentemente se usa es la unión izquierda: es recomendable 
+ # usarla para buscar datos adicionales en otra tabla, ya que preserva las observaciones originales 
+ # incluso cuando no hay coincidencias entre ambas tablas. La unión izquierda debiera ser tu
+ # unión por defecto, a menos que tengas un motivo importante para preferir una de las otras.
  
+
+--------------------------------
+# diagrama de Venn
+-------------------------------
  Otra forma de ilustrar diferentes tipos de uniones es mediante un diagrama de Venn.
  Los diagramas de venn faciltan el entendemiento de las uniones.
- Es decir, tengo 2 conjuntos X e Y y
- dependiendo de la unión obtendré un resultado distinto. 
+ Es decir, tengo 2 conjuntos 'X' e 'Y' y dependiendo de la unión obtendré un resultado distinto. 
  
  Un inner se puede comparar con la intersección entre los dos conjuntos, x e y. 
  Un left_join es todo lo de mi primer conjunto más la intersección con el segundo conjunto.
@@ -268,3 +290,13 @@ vuelos %>%
   count(codigo_cola, sort = TRUE)
 
 set
+ 
+
+# Más ejemplos : 
+--------------------
+#Dataset: Bandas
+-------------------
+
+
+# Dataset: Superheroes
+
