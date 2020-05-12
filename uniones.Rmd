@@ -48,8 +48,6 @@ background-size:cover
 # ¡Empecemos!
 
 
-.footnote[Image credit: [Unplash](https://unsplash.com/)].
-
 ---
 class: inverse, center, middle
 
@@ -247,19 +245,23 @@ Opciones de *TIPO_DE_UNION*:
 La  **__unión de transformación__** o **_mutating join_** permite combinar variables a partir de dos tablas. 
 
 --
-#### 1.Busca coincidencias de observaciones entre ambas tablas de acuerdo a sus claves,
+#### 1. Busca coincidencias de observaciones entre ambas tablas de acuerdo a su/s clave/s
 
 --
-#### 1.Luego copia las variables de una tabla en la otra.
+#### 2. Luego, copia las variables de una tabla a la otra.
 
+
+#### Tipos:
 
 .pull-left[
 #### **unión interior** 
+-----------------------------
 mantiene las observaciones que aparecen en ambas tablas.
 ]
 
 .pull-right[
 #### **unión exterior** 
+-----------------------------
 mantiene las observaciones que aparecen en al menos una de las tablas
 ]
 
@@ -304,7 +306,7 @@ knitr::include_graphics("join-outer.svg")
 
 Queremos incluir el nombre completo de la aerolínea en la tabla `vuelos2`.
 
-¿Cómo lo hacemos? 
+####¿Cómo lo hacemos? 
 --
 
 
@@ -435,11 +437,11 @@ knitr::include_graphics("join-venn.svg")
 
 # Uniones de filtrado 
 
-Las **__Uniones de filtrado__** unen observaciones de la misma forma que las uniones de transformación pero afectan a las observaciones, no a las variables.
+Las **__Uniones de filtrado__** unen observaciones de la misma forma que las uniones de transformación pero afectan a las observaciones, no a las variables.Además, uniones de filtro no duplican filas como lo hacen las uniones de transformación.
 
 ####Tipos:
 
-*  **semi_join:** mantiene todas las observaciones en x con coincidencias en y.
+*  **semi_join:** mantiene todas las observaciones en x con coincidencias en y. Las semi uniones son útiles para unir tablas resumen previamente filtradas con las filas originales.
 
 *  **anti_join:** descarta todas las observaciones en x con coincidencias en y.
   
@@ -467,24 +469,80 @@ knitr::include_graphics("anti_join_banda_instrumento.png")
 ```
 
 ---
+# Utilidad de las uniones de filtrado
+* Las **semi uniones** son útiles para unir tablas resumen previamente filtradas con las filas originales.
+
+```{r destinos_populare, message=FALSE, warning=FALSE, include=FALSE}
+destinos_populares <- vuelos %>%
+  count(destino, sort = TRUE) %>%
+  head(7)
+
+```
+
+Buscamos cada vuelo que fue a alguno de los destinos más populares: 
+
+```{r semi_join_vuelos, echo=TRUE, message=FALSE, warning=FALSE}
+vuelos %>%
+  semi_join(destinos_populares)%>% #<<
+  head(5)
+```
+---
+# Utilidad de las uniones de filtrado
+
+* Las **anti uniones** son útiles para encontrar desajustes. Por ejemplo, al conectar `aviones` y `vuelos`, podría ser interesante saber que existen muchos `vuelos` que no tienen coincidencias en `aviones`:
+
+```{r vuelos_sin_aviones, echo=TRUE, message=FALSE, warning=FALSE}
+vuelos %>%
+  anti_join(aviones, by = "codigo_cola") %>%  #<<
+  count(codigo_cola, sort = TRUE)%>% head(7)
+```
+
+---
 
 # Operaciones de conjuntos
 
-**__Operaciones de conjuntos__** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto.
+Tratan las observaciones como elementos de un conjunto.
 
 * `intersect(x, y)`: devuelve las observaciones comunes en x e y.
 
 * `union(x, y)`: devuelve las observaciones únicas en x e y.
 
 * `setdiff(x, y)`: devuelve las observaciones en x pero no en y.
+
 ---
 
-class: inverse, center, middle
-background-image: url("marvel.jpg")
-background-size:cover
-# EJEMPLO 2: 
-### Dataset editoriales e cómics
+# Operaciones de conjuntos
+
+```{r tribble, echo=TRUE, message=FALSE, warning=FALSE}
+df1 <- tribble(
+  ~x, ~y,
+  1, 1,
+  2, 1
+)
+df2 <- tribble(
+  ~x, ~y,
+  1, 1,
+  1, 2
+)
+```
+
+Las cuatro posibilidades son:
+
+```{r operaciones_conjuntos, echo=TRUE, message=FALSE, warning=FALSE}
+intersect(df1, df2)
+union(df1, df2)
+setdiff(df1, df2)
+setdiff(df2, df1)
+```
 ---
+<!-- --- -->
+
+<!-- class: inverse, center, middle -->
+<!-- background-image: url("marvel.jpg") -->
+<!-- background-size:cover -->
+<!-- # EJEMPLO 2:  -->
+<!-- ### Dataset editoriales e cómics -->
+<!-- --- -->
 
 ---
 ## Fuentes:
@@ -496,8 +554,7 @@ background-size:cover
 * Slides de [Robust tools](https://github.com/gnab/remark/issues/142) de DjNavarro.
 
 
-Slides creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan).
+Slides creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan), utilizando el Css [summer_light](https://github.com/PatriLoto/datos_relaciones_con_dplyr/blob/master/summer_light.css).
 
-Css: [summer_light](https://remarkjs.com)
-
+Las imágenes fueron tomadas de   [Unplash](https://unplash.com).
 ---
