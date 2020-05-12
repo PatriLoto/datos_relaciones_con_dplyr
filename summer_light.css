@@ -14,18 +14,19 @@
 a, a > code {
   color: #3B9AB2;
   /*font-weight: 600;*/
-  font-size: 45px;
+  font-size: 65px;
   text-decoration: none;
   font-family: 'Inconsolata',
   
 }
 
 
-.title-slide a, a > code {
+.title-slide a{
     color: #aadff2;
     text-decoration: none;
   }
-}
+
+
 /* ESTO AGREGUÉ */
 
 div.my-footer span {
@@ -42,12 +43,17 @@ body {
 }
 
 /*para cambiar la fuente del código*/
-.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; }
-
+.remark-code, .remark-inline-code  {
+    font-family: 'Source Code Pro', Monaco, monospace; 
+    color: #3498CC;
+    font-size: 20px;
+}
+/*para cambiar la fuente del código*/
 
 /*Colour hyperlinks*/
 a {
   color: #0054A6;
+ font-size: 20px;
 }
 
 a:hover {
@@ -65,11 +71,10 @@ a:active {
   color: #062e28 !important;
   bottom: 0px;
   left: 0px;
-  height: 30px;
-  width: 100%;
+  height: 30px
   bottom: 3em;
  /* padding-right: 4em;*/
- /* font-size: 55px.;*/
+ /* font-size: 20px.;*/
 }
 
 
@@ -81,11 +86,10 @@ background-color: #EBCC2A !important; }
   white-space: pre-wrap;
 }
 
-/* color tweak */
+/* color de la diapo principal */
 .inverse {
-  background-color: #F9F2F4;
+  background-color: #A2B8D4;          /* #A2B8D4 Celeste claro */     /* #F9F2F4 Rosado bien claro casi gris   */
   color: #F4F4F4;
-
 }
 
 
@@ -118,6 +122,7 @@ background-color: #EBCC2A !important; }
   padding-top: 1em;
 }
 
+/*formato comunas:izq. y derecha*/
 .pull-left {
   float: left;
   width: 47%;
@@ -153,9 +158,17 @@ th, td {
   border-bottom: 1px solid #666;
 }
 
+/*Tabla */
+table {
+  margin: 50%;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
 .remark-slide table thead th { border-bottom: 1px solid #555555}
 th, td { padding: 5px; }
 .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #F4B5BD}  /*#c5dfe7 e2cddd*/
+/*Tabla */
+
 
 .remark-inline-code{
   /* background: #F5F5F5; /* lighter */
