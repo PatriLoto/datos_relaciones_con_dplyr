@@ -222,9 +222,14 @@ background-size:cover
 #Joins
 #### Sintaxis:
 
-`tabla1` %>% **TIPO_DE_UNION** %>% `tabla2` **by** = "key"
+`tabla1` %>% 
+**TIPO_DE_UNION** (`tabla2`, **by** = "key")
 
-Opciones de *TIPO_DE_UNION*:
+
+ donde
+
+*TIPO_DE_UNION* puede ser:
+
 * inner_join
 
 * left_join
