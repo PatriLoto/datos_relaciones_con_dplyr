@@ -509,9 +509,7 @@ Tratan las observaciones como elementos de un conjunto.
 
 * `setdiff(x, y)`: devuelve las observaciones en x pero no en y.
 
----
-
-# Operaciones de conjuntos
+**Ejemplo:**
 
 ```{r tribble, echo=TRUE, message=FALSE, warning=FALSE}
 df1 <- tribble(
@@ -525,26 +523,107 @@ df2 <- tribble(
   1, 2
 )
 ```
+---
+
+# Operaciones de conjuntos
+
 
 Las cuatro posibilidades son:
 
 ```{r operaciones_conjuntos, echo=TRUE, message=FALSE, warning=FALSE}
 intersect(df1, df2)
 union(df1, df2)
+```
+---
+
+# Operaciones de conjuntos
+
+```{r operaciones_conjuntos2, echo=TRUE, message=FALSE, warning=FALSE}
+
 setdiff(df1, df2)
 setdiff(df2, df1)
 ```
 ---
-<!-- --- -->
 
-<!-- class: inverse, center, middle -->
-<!-- background-image: url("marvel.jpg") -->
-<!-- background-size:cover -->
-<!-- # EJEMPLO 2:  -->
-<!-- ### Dataset editoriales e cómics -->
-<!-- --- -->
+class: inverse, center, middle
+background-image: url("marvel.jpg")
+background-size:cover
+## Otros Ejemplos
+### Dataset editoriales y superhéroes
+---
+# data frames
+```{r superheroes, echo=TRUE, message=FALSE, warning=FALSE}
+
+superheroes <- tibble::tribble(
+       ~name, ~alignment,  ~gender,          ~publisher,
+   "Magneto",      "bad",   "male",            "Marvel",
+     "Storm",     "good", "female",            "Marvel",
+  "Mystique",      "bad", "female",            "Marvel",
+    "Batman",     "good",   "male",                "DC",
+     "Joker",      "bad",   "male",                "DC",
+  "Catwoman",      "bad", "female",                "DC",
+   "Hellboy",     "good",   "male", "Dark Horse Comics"
+  )
+
+publishers <- tibble::tribble(
+  ~publisher, ~yr_founded,
+        "DC",       1934L,
+    "Marvel",       1939L,
+     "Image",       1992L
+  )
+```
+---
+## inner_join(superheroes, publishers)
+.pull-left[
+```{r superheroes_inner, echo=TRUE, message=FALSE, warning=FALSE}
+superheroes %>% inner_join (publishers)
+```
+]
+.pull-right[
+```{r superheroes_inner2, echo=FALSE, out.width = '90%', fig.align="right"}
+knitr::include_graphics("inner_superheroe.png")
+```
+]
+---
+## full_join(superheroes, publishers)
+.pull-left[
+```{r superheroes_full, echo=TRUE, message=FALSE, warning=FALSE}
+superheroes %>% full_join (publishers)
+```
+]
+.pull-right[
+```{r superheroes_full2, echo=FALSE, out.width = '70%', fig.align="right"}
+knitr::include_graphics("full_superheroe.png")
+```
+]
+---
+## left_join(superheroes, publishers)
+.pull-left[
+```{r superheroes_left, echo=TRUE, message=FALSE, warning=FALSE}
+superheroes %>% left_join (publishers)
+```
+]
+
+.pull-right[
+```{r superheroes_left2, echo=FALSE, out.width = '75%', fig.align="right"}
+knitr::include_graphics("left_superheroe.png")
+```
+]
+---
+## anti_join(superheroes, publishers)
+
+```{r superheroes_anti, echo=TRUE, message=FALSE, warning=FALSE}
+superheroes %>% anti_join (publishers)
+```
+
+
+```{r superheroes_anti2, echo=FALSE, out.width = '75%', fig.align="center"}
+knitr::include_graphics("anti_superheroes.png")
+```
+
 
 ---
+
 ## Fuentes:
 
 * [R para Ciencia de datos](http://r4ds.had.co.nz/) 
@@ -553,6 +632,9 @@ setdiff(df2, df1)
 
 * Slides de [Robust tools](https://github.com/gnab/remark/issues/142) de DjNavarro.
 
+* [Chapter 15 Join two tables](https://stat545.com/join-cheatsheet.html) de Jenny Bryan
+
+-------------------------------------------------
 
 Slides creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan), utilizando el Css [summer_light](https://github.com/PatriLoto/datos_relaciones_con_dplyr/blob/master/summer_light.css).
 
