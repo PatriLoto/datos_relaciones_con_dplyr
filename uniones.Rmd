@@ -375,6 +375,8 @@ knitr::include_graphics("tablas_banda_instrumento.png")
 ```{r banda_inner, echo=TRUE, message=FALSE, warning=FALSE}
 band_members %>% inner_join(band_instruments)#<<
 ```
+ 
+ En algunos casos, no es necesario especificar la clave por la cual se realizará la unión.
 
 ```{r inner_join_banda, echo=FALSE, out.width = '100%', fig.align="center"}
 knitr::include_graphics("inner_join_banda_instrumento.png")
