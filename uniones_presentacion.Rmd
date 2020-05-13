@@ -577,7 +577,7 @@ publishers <- tibble::tribble(
   )
 ```
 ---
-# inner_join(superheroes, publishers)
+## inner_join(superheroes, publishers)
 
 ```{r superheroes_inner, echo=TRUE, message=FALSE, warning=FALSE}
 tabla_inner <- superheroes %>% inner_join (publishers)  #<< 
@@ -590,7 +590,7 @@ knitr::kable(tabla_inner, format = 'html')
 
 
 ---
-# full_join(superheroes, publishers)
+#### full_join(superheroes, publishers)
 
 ```{r superheroes_full, echo=TRUE, message=FALSE, warning=FALSE}
 tabla_full <- superheroes %>% full_join (publishers)  #<<
@@ -602,7 +602,7 @@ knitr::kable(tabla_full, format = 'html')
 ```
 
 ---
-# left_join(superheroes, publishers)
+#### left_join(superheroes, publishers)
 
 ```{r superheroes_left, echo=TRUE, message=FALSE, warning=FALSE}
 tabla_left <-superheroes %>% left_join (publishers)   #<<
@@ -616,7 +616,7 @@ knitr::kable(tabla_left, format = 'html')
 ```
 
 ---
-# anti_join(superheroes, publishers)
+#### anti_join(superheroes, publishers)
 
 ```{r superheroes_anti, echo=TRUE, message=FALSE, warning=FALSE}
 tabla_anti <- superheroes %>% anti_join (publishers)    #<<
@@ -631,7 +631,7 @@ knitr::kable(tabla_anti, format = 'html')
 
 ---
 
-## Fuentes:
+##### Fuentes:
 
 * [R para Ciencia de datos](http://r4ds.had.co.nz/) 
 
