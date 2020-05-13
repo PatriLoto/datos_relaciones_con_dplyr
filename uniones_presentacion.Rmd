@@ -1,14 +1,14 @@
 ---
 title: "Datos Relacionales"
 subtitle: "with dplyr"
-author: "Patricia Loto"
+author: "Patricia Loto (🐦patriloto)"
 date: '13/04/2020'
 output:
   xaringan::moon_reader:
     css: "summer_light.css"
-    #css-fonts: "metropolis-fonts"
+    #css-fonts: "summer-fonts"
     #css: [default, metropolis-fonts]
-    lib_dir: libs
+    # lib_dir: libs
     nature:
       ratio: "16:12"
       autoplay: 40000  
@@ -45,7 +45,7 @@ options(servr.daemon = TRUE)
 class: inverse, center, top
 background-image: url("largada.jpg")
 background-size:cover
-# ¡Empecemos!
+## ¡Empecemos!
 
 
 ---
@@ -77,9 +77,9 @@ library(DT)
 class: inverse, center, top
 background-image: url("aeropuertos.jpg")
 background-size:cover
-## Aeropuertos
+### Aeropuertos
 
-## Contiene información de cada aeropuerto, identificado por su código.
+### Contiene información de cada aeropuerto, identificado por su código.
 
 ---
 # aeropuertos
@@ -90,15 +90,15 @@ glimpse(aeropuertos)
 ```
 
 ---
-class: inverse, center, bottom
+class: inverse, center, top
 background-image: url("aerolineas.jpg")
 background-size:cover
 ## Aerolíneas
 
-## Permite observar el nombre completo de la aerolínea a partir de su código abreviado.
-
 ---
 # aerolineas
+
+#### Permite observar el nombre completo de la aerolínea a partir de su código abreviado.
 
 ```{r aerolineas, echo=FALSE, message=FALSE, warning=FALSE}
 #knitr::kable(head(aerolineas), format = 'html')
@@ -203,7 +203,7 @@ Existen diferentes tipos de claves:
 class: inverse, center, middle
 background-image: url("soga1.jpg")
 background-size:cover
-# JOINS
+### JOINS
 
 ---
 #Joins
@@ -225,10 +225,7 @@ background-size:cover
 `tabla1` %>% 
 **TIPO_DE_UNION** (`tabla2`, **by** = "key")
 
-
- donde
-
-*TIPO_DE_UNION* puede ser:
+ donde *TIPO_DE_UNION* puede ser:
 
 * inner_join
 
@@ -301,7 +298,7 @@ Una **unión exterior** mantiene las observaciones que aparecen en al menos una 
 ---
 # Representación gráfica de las uniones exteriores
 
-```{r echo=FALSE, out.width = '45%', fig.align="center"}
+```{r echo=FALSE, out.width = '40%', fig.align="center"}
 knitr::include_graphics("join-outer.svg")
 ```
 
@@ -378,7 +375,7 @@ band_members %>% inner_join(band_instruments)#<<
  
  En algunos casos, no es necesario especificar la clave por la cual se realizará la unión.
 
-```{r inner_join_banda, echo=FALSE, out.width = '100%', fig.align="center"}
+```{r inner_join_banda, echo=FALSE, out.width = '80%', fig.align="center"}
 knitr::include_graphics("inner_join_banda_instrumento.png")
 ```
 
@@ -491,7 +488,7 @@ Buscamos cada vuelo que fue a alguno de los destinos más populares:
 ```{r semi_join_vuelos, echo=TRUE, message=FALSE, warning=FALSE}
 vuelos %>%
   semi_join(destinos_populares)%>% #<<
-  head(5)
+  head(4)
 ```
 ---
 # Utilidad de las uniones de filtrado
@@ -501,7 +498,7 @@ vuelos %>%
 ```{r vuelos_sin_aviones, echo=TRUE, message=FALSE, warning=FALSE}
 vuelos %>%
   anti_join(aviones, by = "codigo_cola") %>%  #<<
-  count(codigo_cola, sort = TRUE)%>% head(7)
+  count(codigo_cola, sort = TRUE)%>% head(6)
 ```
 
 ---
@@ -580,52 +577,55 @@ publishers <- tibble::tribble(
   )
 ```
 ---
-## inner_join(superheroes, publishers)
-.pull-left[
-```{r superheroes_inner, echo=TRUE, message=FALSE, warning=FALSE}
-superheroes %>% inner_join (publishers)
-```
-]
-.pull-right[
-```{r superheroes_inner2, echo=FALSE, out.width = '90%', fig.align="right"}
-knitr::include_graphics("inner_superheroe.png")
-```
-]
----
-## full_join(superheroes, publishers)
-.pull-left[
-```{r superheroes_full, echo=TRUE, message=FALSE, warning=FALSE}
-superheroes %>% full_join (publishers)
-```
-]
-.pull-right[
-```{r superheroes_full2, echo=FALSE, out.width = '70%', fig.align="right"}
-knitr::include_graphics("full_superheroe.png")
-```
-]
----
-## left_join(superheroes, publishers)
-.pull-left[
-```{r superheroes_left, echo=TRUE, message=FALSE, warning=FALSE}
-superheroes %>% left_join (publishers)
-```
-]
+# inner_join(superheroes, publishers)
 
-.pull-right[
-```{r superheroes_left2, echo=FALSE, out.width = '75%', fig.align="right"}
-knitr::include_graphics("left_superheroe.png")
+```{r superheroes_inner, echo=TRUE, message=FALSE, warning=FALSE}
+tabla_inner <- superheroes %>% inner_join (publishers)  #<< 
 ```
-]
+
+```{r tabla_inner, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+
+knitr::kable(tabla_inner, format = 'html')
+```
+
+
 ---
-## anti_join(superheroes, publishers)
+# full_join(superheroes, publishers)
+
+```{r superheroes_full, echo=TRUE, message=FALSE, warning=FALSE}
+tabla_full <- superheroes %>% full_join (publishers)  #<<
+```
+
+
+```{r superheroes_full2, echo=FALSE, out.width = '70%', fig.align="center"}
+knitr::kable(tabla_full, format = 'html')
+```
+
+---
+# left_join(superheroes, publishers)
+
+```{r superheroes_left, echo=TRUE, message=FALSE, warning=FALSE}
+tabla_left <-superheroes %>% left_join (publishers)   #<<
+```
+
+
+
+
+```{r superheroes_left2, echo=FALSE, out.width = '75%',fig.align="center"}
+knitr::kable(tabla_left, format = 'html')
+```
+
+---
+# anti_join(superheroes, publishers)
 
 ```{r superheroes_anti, echo=TRUE, message=FALSE, warning=FALSE}
-superheroes %>% anti_join (publishers)
+tabla_anti <- superheroes %>% anti_join (publishers)    #<<
 ```
+
 
 
 ```{r superheroes_anti2, echo=FALSE, out.width = '75%', fig.align="center"}
-knitr::include_graphics("anti_superheroes.png")
+knitr::kable(tabla_anti, format = 'html')
 ```
 
 
