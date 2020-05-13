@@ -48,6 +48,8 @@ background-size:cover
 ## ¡Empecemos!
 
 
+.footnote [Source:[Unplash](https://unplash.com/)]
+
 ---
 class: inverse, center, middle
 
@@ -251,7 +253,6 @@ La  **__unión de transformación__** o **_mutating join_** permite combinar var
 
 --
 #### 2. Luego, copia las variables de una tabla a la otra.
-
 
 #### Tipos:
 
@@ -576,6 +577,9 @@ publishers <- tibble::tribble(
      "Image",       1992L
   )
 ```
+
+
+.footnote[Source: 545stat de Jenny Bryan.]
 ---
 ## inner_join(superheroes, publishers)
 
