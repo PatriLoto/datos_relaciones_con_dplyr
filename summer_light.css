@@ -1,13 +1,13 @@
 /*Use same font throughout app*/
 @import url("//fonts.googleapis.com/css?family=Lato");
 @import url("//fonts.googleapis.com/css?family=Inconsolata:wght@400;600");
-@import url("//fonts.googleapis.com/css?family=Noto+Serif");
+@import url("//fonts.googleapis.com/css?family=+Serif");
 .family=Inconsolata:wght@400;600
 @import url("//fonts.googleapis.com/css?family=Monserrat");
 
 .remark-code, .remark-inline-code {font-family: 'Monserrat'}
 
-* {
+{
   font-family: 'Lato'!important ;
   color: #555555 ;
 }
@@ -20,9 +20,8 @@ a, a > code {
   
 }
 
-
-.title-slide a{
-    color: #aadff2;
+.title-slide a{  
+    color: #aadff2;   /*celeste-claro de primera slide*/
     text-decoration: none;
   }
 
@@ -30,7 +29,7 @@ a, a > code {
 /* ESTO AGREGUÉ */
 
 div.my-footer span {
-    font-size: 14pt;
+    font-size: 20pt;
     color: #125972;
     position: absolute;
     left: 20px;
@@ -39,14 +38,14 @@ div.my-footer span {
 
 body {
     font-family: 'Noto Serif';
-    font-size: 14pt;
+    font-size: 25px;
 }
 
 /*para cambiar la fuente del código*/
 .remark-code, .remark-inline-code  {
     font-family: 'Source Code Pro', Monaco, monospace; 
     color: #3498CC;
-    font-size: 20px;
+    font-size: 18px;
 }
 /*para cambiar la fuente del código*/
 
@@ -57,23 +56,23 @@ a {
 }
 
 a:hover {
-  color: #f50858;
+  color: #f50858;                   /* fucsia, cuando pasas el mouse por arriba del link*/
 }
 
 a:active {
-  color: #EBCC2A!important;
+  color: #EBCC2A!important;    /* color dle resaltado utilizado en el código*/
 }
 
 
 /*#00a08a   */
 .footnote {
   position: absolute;
-  color: #062e28 !important;
+  color: #011714 !important;    /* pie de pagina*/
   bottom: 0px;
   left: 0px;
-  height: 30px
   bottom: 3em;
- /* padding-right: 4em;*/
+  font-size: 20px;
+ /* padding-right: 4em;     height: 30px*/
  /* font-size: 20px.;*/
 }
 
@@ -92,13 +91,45 @@ background-color: #EBCC2A !important; }
   color: #F4F4F4;
 }
 
-
-.inverse h1, .inverse h3 {
-  color: #F4F4F4;
+/*TITULOS*/
+/* Color adjustments to headers */
+h1 {
+  color: #FA4E63;  /* coral*/
 }
 
-.inverse h2 {
-  color: #EBCC2A;
+h2 {
+  color: #515151;  /* gris oscuro*/
+}
+h3 {
+  color: black;
+}
+
+h4 {
+  color: #2c204d;   /* negro alilado*/
+}
+
+/* Titulos inversos - fondo oscuro*/
+
+* Título h1 inverso o tamaño 1*/
+.inverse h1 {
+  color: #FA4E63;  /* #FA4E63: color coral */
+}
+
+
+/* titulo tamaño dos*/
+.inverse h2 {    
+  color: #EBCC2A;  /* #EBCC2A: color mostaza */
+}
+
+
+/* titulo tamaño tres*/
+.inverse h3 {
+  color: #fcfcfc;  /* #F4F4F4: color gris claro -#fcfcfc*/
+}
+
+/* titulo tamaño 4*/
+.inverse h4{
+  color: #2c204d;  /* #F4F4F4: color gris claro */
 }
 
 
@@ -139,7 +170,7 @@ img, video, iframe {
   max-width: 100%;
 }
 
-
+/*  formato de quotes */
 blockquote {
   border-left: solid 5px lightgray;
   padding-left: 1em;
@@ -160,7 +191,7 @@ th, td {
 
 /*Tabla */
 table {
-  margin: 50%;
+  margin: auto
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
 }
@@ -189,7 +220,7 @@ th, td { padding: 5px; }
 
 .remark-slide-number .progress-bar {
   height: 100%;
-  background-color: red;
+  background-color: blue;
 }
 
 
@@ -212,11 +243,6 @@ select:focus {
     box-shadow: inset 0 1px 1px #EC7171,0 0 8px #EC7171;
 }
 
-/*Select options - currently not working*/
-option:hover {
-  background-color: #EC7171 !important
-}*/
-
 /*Selected table row*/
 table.dataTable tr.selected td, table.dataTable td.selected {
     background-color: #a8c4b7 !important;
@@ -232,12 +258,12 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 /* RU additions */
 /*~~~~~~~~~~~~~~*/
 
-/* Title slide */
+/* Titulos de la primer slide */
 
 
-/* H1 fonts */
+/* H1 fonts en diapositiva principal */
 .title-slide h1 {
-  color: #515151 !important;  /*gris*/
+  color: #515151 !important;  /*gris oscuro*/
   padding-top: 150px;
   font-weight: normal;
   font-size: 75px;
@@ -246,76 +272,25 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   margin-bottom: 18px;
 }
 
-/* H2 fonts */
+/* H2 fonts  en diapositiva principal*/
 .title-slide h2 {
-  color: #E1AF00;         /* #E1AF00 F4F4F4 #FA4E63 gris bien claro casi blanco, */ 
+  color: #E1AF00;         /* #E1AF00: color mostaza F4F4F4 #FA4E63 gris bien claro casi blanco, */ 
   font-size: 55px;
   text-align: center;
   padding-top: 0px;
   margin-top: 0px;
 }
 
-/* H3 fonts #2c204d #666666 */
+/* H3 fonts en diapositva principal #2c204d #666666 */
 .title-slide h3 {
   font-size: 35px;
   font-weight: normal;
-  color:#2c204d;
+  color:#2c204d;  /* negro alilado*/
   text-align: center;
   text-shadow: none;
   padding: 0px;
   margin: 0px;
   line-height: 1;
-}
-
-/* Remove slide count */
-.title-slide .remark-slide-number {
-  text-shadow: none;
-}
-
-/*~~~~~~~~~~~~~~~~~~*/
-/* SECTION DIVIDERS */
-/*~~~~~~~~~~~~~~~~~~*/
-
-/* section divider pink */
-.title-slide-section-pink {
-  background-color: #FA4E63;  /*#E1AF00 coral*/
-  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
-}
-
-/* section divider pink H1 fonts */
-.title-slide-section-pink h1, .title-slide-section-pink  h2, .title-slide-section-pink h3, .title-slide-section-pink  p {
-  /*color: #fff;*/
-}
-
-/* section divider grey */
-.title-slide-section-grey {
-  background-color: #000000;  /*#000000  515151*/
-  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
-}
-
-/* section divider grey H1 fonts */
-.title-slide-section-grey h1, .title-slide-section-grey h2, .title-slide-section-grey h3 {
-  color: #fff;
-}
-
-.title-slide-section-grey p {
-  color: #fff;
-}
-
-/*~~~~~~~~~~~~~~~~~~*/
-/* FINAL SLIDE      */
-/*~~~~~~~~~~~~~~~~~~*/
-
-.title-slide-final {
-  background-color: #E1AF00;
-  color: #ffffff;
-  padding-left: 100px;
-  text-shadow: 0 0 20px #333;
-  text-align: center;
-}
-
-.title-slide-final h1 {
-  color: #cc0033;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~*/
@@ -399,3 +374,4 @@ ru-blockquote {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
+
