@@ -6,8 +6,6 @@
 @import url("//fonts.googleapis.com/css?family=Monserrat");
 @import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
 
-/*.remark-code, .remark-inline-code {font-family: 'Monserrat'}*
-/*{
   font-family: 'Lato'!important ;
   color: #555555 ;
 }*/
@@ -98,8 +96,9 @@ h1 {
 }
 
 h2 {
-  color: #515151;  /* gris oscuro*/
+  color: #EBCC2A;  /* gris oscuro #EBCC2A mostaza*/
 }
+
 h3 {
   color: black;
 }
@@ -386,7 +385,7 @@ div.my-footer {
   width: 100%;
 }
 div.my-footer span {
-  font-size: 14pt;
+  font-size: 16pt;
   color: #125972;
   position: absolute;
   left: 15px;
@@ -400,7 +399,10 @@ div.my-footer a {
 
 footnote {
   position: absolute;
-  bottom: 3em;
-  padding-right: 4em;
-  font-size: 90%;
+  bottom: 5em;
+  padding-right: 6em;
+  font-size: 80%;
+  padding: 0 3em 3em 3em;
+  float:right;			
+  text-align:right;
 }
