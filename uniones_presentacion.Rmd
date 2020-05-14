@@ -44,8 +44,8 @@ options(servr.daemon = TRUE)
 class: inverse, center,bottom
 background-image: url("largada.jpg")
 background-size:cover
-## ¡Empecemos!
 
+## ¡Empecemos!
 ---
 class: inverse, center, middle
 
@@ -108,7 +108,7 @@ glimpse(aerolineas)
 class: inverse, left, top
 background-image: url("aviones.jpg")
 background-size:cover
-# Aviones
+## Aviones
 
 ### Entrega información de cada avión, identificado por su codigo_cola.
 
@@ -126,7 +126,7 @@ glimpse(aviones)
 class: inverse, center, bottom
 background-image: url("clima.jpg")
 background-size:cover
-# Clima
+## Clima
 
 ### Entrega información del clima en cada aeropuerto de Nueva York para cada hora.
 
@@ -263,9 +263,7 @@ mantiene las observaciones que aparecen en ambas tablas.
 -----------------------------
 mantiene las observaciones que aparecen en al menos una de las tablas
 ]
--------------------------------------------------
 
-  .footnote[Mas información en: https://dplyr.tidyverse.org/reference/join.html]
 
 ---
 # Uniones de transformación
@@ -421,7 +419,7 @@ knitr::include_graphics("full_join_banda_instrumento.png")
 
 ---
 
-# Diagramas de Venn:
+# Diagramas de Venn
 
 Otra forma de ilustrar diferentes tipos de uniones es mediante un diagrama de Venn:
 
