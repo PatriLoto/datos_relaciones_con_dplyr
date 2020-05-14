@@ -1,18 +1,17 @@
 ---
 title: "Datos Relacionales"
-subtitle: "with dplyr"
-author: "Patricia Loto (🐦patriloto)"
+subtitle: "con dplyr"
+author: "Patricia A. Loto (🐦@patriloto)"
 date: '13/04/2020'
 output:
   xaringan::moon_reader:
     css: "summer_light.css"
     #css-fonts: "summer-fonts"
-    #css: [default, metropolis-fonts]
+    #css: [default, summer_light, summer-fonts ]
     # lib_dir: libs
     nature:
       ratio: "16:12"
       autoplay: 40000  
-      #highlightStyle: github
       highlightStyle: atelier-lakeside-light
       highlightLines: true
       countIncrementalSlides: true
@@ -42,13 +41,10 @@ options(servr.daemon = TRUE)
  1. Operaciones con conjuntos
 ---
 
-class: inverse, center, top
+class: inverse, center,bottom
 background-image: url("largada.jpg")
 background-size:cover
 ## ¡Empecemos!
-
-
-
 
 ---
 class: inverse, center, middle
@@ -254,7 +250,7 @@ La  **__unión de transformación__** o **_mutating join_** permite combinar var
 --
 #### 2. Luego, copia las variables de una tabla a la otra.
 
-#### Tipos:
+#### Principalmente, existen dos tipos de unión:
 
 .pull-left[
 #### **unión interior** 
@@ -267,8 +263,9 @@ mantiene las observaciones que aparecen en ambas tablas.
 -----------------------------
 mantiene las observaciones que aparecen en al menos una de las tablas
 ]
+-------------------------------------------------
 
-.footnote[Mas información en: https://dplyr.tidyverse.org/reference/join.html]
+  .footnote[Mas información en: https://dplyr.tidyverse.org/reference/join.html]
 
 ---
 # Uniones de transformación
@@ -489,7 +486,7 @@ Buscamos cada vuelo que fue a alguno de los destinos más populares:
 ```{r semi_join_vuelos, echo=TRUE, message=FALSE, warning=FALSE}
 vuelos %>%
   semi_join(destinos_populares)%>% #<<
-  head(4)
+  head(3)
 ```
 ---
 # Utilidad de las uniones de filtrado
@@ -554,10 +551,10 @@ class: inverse, center, middle
 background-image: url("marvel.jpg")
 background-size:cover
 ## Otros Ejemplos
-### Dataset editoriales y superhéroes
+### Dataset superhéroes y editoriales 
 ---
-# data frames
-```{r superheroes, echo=TRUE, message=FALSE, warning=FALSE}
+## Tabla Superhéroes
+```{r superheroes2, echo=TRUE, message=FALSE, warning=FALSE}
 
 superheroes <- tibble::tribble(
        ~name, ~alignment,  ~gender,          ~publisher,
@@ -570,17 +567,36 @@ superheroes <- tibble::tribble(
    "Hellboy",     "good",   "male", "Dark Horse Comics"
   )
 
+
+```
+
+```{r tabla_superheroes, echo=FALSE, out.width = '50%', message=FALSE, warning=FALSE, fig.align="center"}
+
+knitr::kable(superheroes, format = 'html')
+```
+
+---
+## Tabla editoriales
+
+```{r editoriales, echo=TRUE, message=FALSE, warning=FALSE}
+
 publishers <- tibble::tribble(
   ~publisher, ~yr_founded,
         "DC",       1934L,
     "Marvel",       1939L,
      "Image",       1992L
   )
+
 ```
 
 
-.footnote[Source: 545stat de Jenny Bryan.]
+```{r tabla_editoriales, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+
+knitr::kable(publishers, format = 'html')
+```
+
 ---
+
 ## inner_join(superheroes, publishers)
 
 ```{r superheroes_inner, echo=TRUE, message=FALSE, warning=FALSE}
@@ -640,14 +656,15 @@ knitr::kable(tabla_anti, format = 'html')
 * [R para Ciencia de datos](http://r4ds.had.co.nz/) 
 
 * [Primers de Rstudio](https://rstudio.cloud/learn/primers/4.3)
+ 
+* [Guía de referencia](https://dplyr.tidyverse.org/reference/join.html)
 
-* Slides de [Robust tools](https://github.com/gnab/remark/issues/142) de  [Danielle Navarro](@djnavarro).
+* Slides de [Robust tools](https://github.com/gnab/remark/issues/142) de  [Danielle Navarro](https://twitter.com/djnavarro).
 
-* [STAT 545-Chapter 15](https://stat545.com/join-cheatsheet.html) de [Jenny Bryan](@JennyBryan)
+* [STAT 545 - Chapter 15](https://stat545.com/join-cheatsheet.html) de [Jenny Bryan](https://twitter.com/JennyBryan)
 
 -------------------------------------------------
 
-Slides creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan), utilizando el css propio [summer_light](https://github.com/PatriLoto/datos_relaciones_con_dplyr/blob/master/summer_light.css).
+➡️ Las slides fueron creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan), utilizando el css propio [summer_light](https://github.com/PatriLoto/datos_relaciones_con_dplyr/blob/master/summer_light.css).
 
-Las imágenes fueron tomadas de [Unplash](https://unplash.com).
----
+➡️ Las imágenes fueron tomadas de [Unplash](https://unplash.com).
