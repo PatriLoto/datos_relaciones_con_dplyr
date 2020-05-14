@@ -4,19 +4,34 @@
 @import url("//fonts.googleapis.com/css?family=+Serif");
 .family=Inconsolata:wght@400;600
 @import url("//fonts.googleapis.com/css?family=Monserrat");
+@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
 
-.remark-code, .remark-inline-code {font-family: 'Monserrat'}
-
-{
+/*.remark-code, .remark-inline-code {font-family: 'Monserrat'}*
+/*{
   font-family: 'Lato'!important ;
   color: #555555 ;
+}*/
+-----------------------------------------------------------------------------------------------
+
+/* FORMATO DEL CÓDIGO RESULTANTE*/
+.remark-code, .remark-inline-code {
+  font-family: 'Monserrat', 'Lucida Console', Monaco, monospace;
+  font-size: 80%;
 }
+
+/* FORMATO DEL BODY  font-size: 25px;   font-family: 'Noto Serif';*/
+body {
+  font-family: 'Fira Sans','Droid Serif', 'Palatino Linotype', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+  color: #555555 ;
+}
+
+/* FORMATO DEL CÓDIGO EN R*/
 a, a > code {
   color: #3B9AB2;
   /*font-weight: 600;*/
   font-size: 65px;
   text-decoration: none;
-  font-family: 'Inconsolata',
+  font-family: 'Fira Code',
   
 }
 
@@ -25,21 +40,6 @@ a, a > code {
     text-decoration: none;
   }
 
-
-/* ESTO AGREGUÉ */
-
-div.my-footer span {
-    font-size: 20pt;
-    color: #125972;
-    position: absolute;
-    left: 20px;
-    bottom: 10px;
-}
-
-body {
-    font-family: 'Noto Serif';
-    font-size: 25px;
-}
 
 /*para cambiar la fuente del código*/
 .remark-code, .remark-inline-code  {
@@ -375,3 +375,32 @@ ru-blockquote {
   -webkit-border-radius: 5px;
 }
 
+
+/*FOOTER*/
+div.my-footer {
+  background-color: #ff7b7b;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 45px;
+  width: 100%;
+}
+div.my-footer span {
+  font-size: 14pt;
+  color: #125972;
+  position: absolute;
+  left: 15px;
+  bottom: 12px;
+}
+
+div.my-footer a {
+  font-weight: bold;
+  color: #125972;
+}
+
+footnote {
+  position: absolute;
+  bottom: 3em;
+  padding-right: 4em;
+  font-size: 90%;
+}
