@@ -48,7 +48,7 @@ background-size:cover
 ## ¡Empecemos!
 
 
-.footnote [Source:[Unplash](https://unplash.com/)]
+
 
 ---
 class: inverse, center, middle
@@ -641,13 +641,13 @@ knitr::kable(tabla_anti, format = 'html')
 
 * [Primers de Rstudio](https://rstudio.cloud/learn/primers/4.3)
 
-* Slides de [Robust tools](https://github.com/gnab/remark/issues/142) de DjNavarro.
+* Slides de [Robust tools](https://github.com/gnab/remark/issues/142) de  [Danielle Navarro](@djnavarro).
 
-* [Chapter 15 Join two tables](https://stat545.com/join-cheatsheet.html) de Jenny Bryan
+* [STAT 545-Chapter 15](https://stat545.com/join-cheatsheet.html) de [Jenny Bryan](@JennyBryan)
 
 -------------------------------------------------
 
-Slides creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan), utilizando el Css [summer_light](https://github.com/PatriLoto/datos_relaciones_con_dplyr/blob/master/summer_light.css).
+Slides creadas con el paquete de R [**xaringan**](https://github.com/yihui/xaringan), utilizando el css propio [summer_light](https://github.com/PatriLoto/datos_relaciones_con_dplyr/blob/master/summer_light.css).
 
-Las imágenes fueron tomadas de   [Unplash](https://unplash.com).
+Las imágenes fueron tomadas de [Unplash](https://unplash.com).
 ---
