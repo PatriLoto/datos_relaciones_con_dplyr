@@ -1,7 +1,7 @@
 ---
 title: "Datos Relacionales"
 subtitle: "con dplyr"
-author: "Patricia A. Loto (🐦@patriloto)"
+author: "Patricia A. Loto | 🐦@patriloto"
 date: '02/05/2020'
 output:
   xaringan::moon_reader:
