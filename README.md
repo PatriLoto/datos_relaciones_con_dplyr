@@ -4,7 +4,7 @@
 
 * [Primers de Rstudio](https://rstudio.cloud/learn/primers/4.3)
  
-* [Guía de referencia de Joins](https://dplyr.tidyverse.org/reference/join.html)
+* [Guía de referencia de Join](https://dplyr.tidyverse.org/reference/join.html)
 
 * [Robust tools](https://github.com/gnab/remark/issues/142) de  [Danielle Navarro](https://twitter.com/djnavarro).
 
