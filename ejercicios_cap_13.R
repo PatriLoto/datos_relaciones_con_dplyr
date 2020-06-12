@@ -323,10 +323,10 @@ band_members %>% right_join(band_instruments)
 # Full Join
 
 band_members %>% full_join(band_instruments)
-------------------------------
-# Dataset: Superheroes
--------------------------------
-# primer mini dataset  
+-----------------------------------
+# Datasets: Superheroes & publishers
+-----------------------------------
+# primer data frame
 superheroes <- tibble::tribble(
     ~name, ~alignment,  ~gender,          ~publisher,
     "Magneto",      "bad",   "male",            "Marvel",
@@ -337,21 +337,42 @@ superheroes <- tibble::tribble(
     "Catwoman",      "bad", "female",                "DC",
     "Hellboy",     "good",   "male", "Dark Horse Comics")
 
-# segundo mini dataset
+# segundo data frame
 publishers <- tibble::tribble(
   ~publisher, ~yr_founded,
   "DC",       1934L,
   "Marvel",       1939L,
   "Image",       1992L)
 
-#-------------------------------------------
+#---------------------------------------
 ## inner_join(superheroes, publishers)
+#--------------------------------------
+# inner_join o unión interna, une pares de observaciones siempre que sus claves sean iguales.
 
 tabla_inner <- superheroes %>% inner_join (publishers)
 tabla_inner 
 
-
+#--------------------------------------
 ## full_join(superheroes, publishers)
+#--------------------------------------
+# full_join o unión completa mantiene todas las observaciones en x e y.
 
 tabla_full <- superheroes %>% full_join (publishers)  
 tabla_full
+
+#------------------------------------
+# left_join (superheroes, publishers)
+#------------------------------------
+#left_join o unión izquierda: mantiene todas las observaciones en x.
+
+tabla_left <- superheroes %>% left_join (publishers)
+tabla_left 
+
+#-------------------------------------
+# anti_join (superheroes, publishers)
+#------------------------------------
+# anti_join: descarta todas las observaciones en x con coincidencias en y.
+
+tabla_anti <- superheroes %>% anti_join (publishers)
+tabla_anti 
+
