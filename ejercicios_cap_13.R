@@ -326,8 +326,7 @@ band_members %>% full_join(band_instruments)
 ------------------------------
 # Dataset: Superheroes
 -------------------------------
-  
-# primer dataset  
+# primer mini dataset  
 superheroes <- tibble::tribble(
     ~name, ~alignment,  ~gender,          ~publisher,
     "Magneto",      "bad",   "male",            "Marvel",
@@ -336,23 +335,23 @@ superheroes <- tibble::tribble(
     "Batman",     "good",   "male",                "DC",
     "Joker",      "bad",   "male",                "DC",
     "Catwoman",      "bad", "female",                "DC",
-    "Hellboy",     "good",   "male", "Dark Horse Comics"
-  )
+    "Hellboy",     "good",   "male", "Dark Horse Comics")
 
-# segundo dataset
+# segundo mini dataset
 publishers <- tibble::tribble(
   ~publisher, ~yr_founded,
   "DC",       1934L,
   "Marvel",       1939L,
-  "Image",       1992L
-)
+  "Image",       1992L)
 
 #-------------------------------------------
 ## inner_join(superheroes, publishers)
 
 tabla_inner <- superheroes %>% inner_join (publishers)
+tabla_inner 
+
 
 ## full_join(superheroes, publishers)
 
 tabla_full <- superheroes %>% full_join (publishers)  
-
+tabla_full
