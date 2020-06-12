@@ -7,7 +7,6 @@
   
 library(tidyverse)
 library(datos)
-# library(nycflights13)
 library(here)
 
 ------------------------
